@@ -1,7 +1,7 @@
 body {
   background-color: var(--color-bg);
   color: var(--color-text);
-  font-family: 'JetBrains Mono', 'Helvetica';
+  font-family: 'Avenir Next', 'Helvetica';
 }
 
 .title {
@@ -11,10 +11,11 @@ body {
 }
 
 .container {
+  overflow: hidden;
   box-sizing: border-box;
   max-width: 355px;
   margin: 15px auto;
-  padding: 15px 0 0;
+  padding: 0 0 7px;
   background-color: var(--color-container);
   border-radius: 20px;
   border: 1px solid var(--color-container-border);
@@ -23,21 +24,23 @@ body {
 }
 
 img {
-  width: 320px;
-  border-radius: 20px;
+  box-sizing: border-box;
+  width: 354px;
+  border-radius: 19px 20px 45px 45px;
+  border: 1px solid var(--acent-color);
+  font-size: 0;
 }
 
 .kinopoisk-link {
   position: relative;
   display: inline-block;
-  overflow: hidden;
   font-size: 0;
 }
 
 .crop-icon {
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 1px;
+  right: 1px;
   overflow: hidden;
   width: 34px;
   border-radius: 5px;
@@ -56,7 +59,7 @@ img {
 
 .things_link {
   transition: color 1s;
-  color: var(--link-color);
+  color: var(--acent-color);
   text-decoration: none;
 }
 
@@ -80,7 +83,7 @@ p {
 
 .border-top + .last-element:last-child {
   display: block;
-  margin-top: -4px;
-  padding: 3px 0 5px;
+  margin-top: -7px;
+  padding: 4px 0 0;
   border-top: 2px solid var(--color-container-border);
 }
