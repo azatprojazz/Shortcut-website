@@ -14,7 +14,7 @@ h1 {
 .title {
   margin-bottom: 5px;
   padding-top: 5px;
-  padding-bottom: 8px;
+  padding-bottom: 10px;
   border-bottom: 1px solid var(--acent-color);
 }
 
