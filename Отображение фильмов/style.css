@@ -58,17 +58,17 @@ img {
   height: 63px;
 }
 
-.things_link {
+.things-link {
   transition: color 1s;
   color: var(--acent-color);
   text-decoration: none;
 }
 
-.things_link:hover {
+.things-link:hover {
   color: var(--link-hover-color);
 }
 
-.things_link:visited {
+.things-link:visited {
   color: var(--link-hover-color);
 }
 
