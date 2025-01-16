@@ -15,7 +15,7 @@ h1 {
   margin-bottom: 10px;
   padding-top: 5px;
   padding-bottom: 8px;
-  border-bottom: 2px solid var(--acent-color);
+  border-bottom: 1px solid var(--acent-color);
 }
 
 .container {
@@ -54,7 +54,7 @@ a {
 
 p {
   margin: 0;
-  padding: 0 10px 10px;
+  padding: 0 10px 8px;
   font-size: 1.4em;
 }
 
