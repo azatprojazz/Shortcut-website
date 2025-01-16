@@ -7,12 +7,12 @@ body {
 h1 {
   margin: 0;
   padding: 0 10px;
-  font-size: 1.5em;
+  font-size: 1.4em;
   font-weight: bold;
 }
 
 .title {
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   padding-top: 5px;
   padding-bottom: 8px;
   border-bottom: 1px solid var(--acent-color);
