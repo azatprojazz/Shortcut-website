@@ -21,6 +21,7 @@ h1 {
   border: 1px solid var(--acent-color);
   box-shadow: var(--box-shadow);
   text-align: center;
+  word-wrap: break-word;
 }
 
 img {
