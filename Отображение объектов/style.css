@@ -31,6 +31,9 @@ h1 {
 }
 
 a {
+  display: inline-block; 
+  margin: 0; 
+  padding: 0;
   transition: color 1s;
   color: var(--acent-color);
   border-bottom: 1px solid var(--acent-color);
