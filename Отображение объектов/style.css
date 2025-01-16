@@ -6,7 +6,7 @@ body {
 
 h1 {
   margin: 0;
-  padding: 0;
+  padding: 0 10px;
   font-size: 1.5em;
   font-weight: bold;
 }
@@ -22,7 +22,7 @@ h1 {
   box-sizing: border-box;
   max-width: 355px;
   margin: 15px auto;
-  padding: 8px 10px;
+  padding: 5px 0;
   background-color: var(--color-container);
   border-radius: 10px;
   border: 1px solid var(--acent-color);
@@ -46,7 +46,7 @@ h1 {
 
 p {
   margin: 0;
-  padding: 0 0 10px;
+  padding: 0 10px 10px;
   font-size: 1.4em;
 }
 
