@@ -4,7 +4,7 @@ body {
   font-family: 'Avenir Next', 'Helvetica';
 }
 
-.title {
+h1 {
   margin: 8px;
   padding: 0;
   font-size: 1.7em;
@@ -18,7 +18,7 @@ body {
   padding: 0 0 7px;
   background-color: var(--color-container);
   border-radius: 20px;
-  border: 1px solid var(--color-container-border);
+  border: 1px solid var(--acent-color);
   box-shadow: var(--box-shadow);
   text-align: center;
 }
@@ -85,5 +85,5 @@ p {
   display: block;
   margin-top: -7px;
   padding: 4px 0 0;
-  border-top: 2px solid var(--color-container-border);
+  border-top: 2px solid var(--acent-color);
 }

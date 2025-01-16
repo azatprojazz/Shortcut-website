@@ -4,8 +4,6 @@
   --acent-color: rgba(16, 14, 14, 0.8);
   --color-bg: #fff;
   --color-container: #f9f9f9;
-  --color-container-border: var(--acent-color);
   --color-text: black;
-  --link-color: var(--acent-color);
   --link-hover-color: #c23400;
 }
