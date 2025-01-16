@@ -30,17 +30,25 @@ h1 {
   word-wrap: break-word;
 }
 
-a {
+a, .things-link {
   transition: color 1s;
   color: var(--acent-color);
 }
 
-a:hover {
+a:hover, .things-link:hover {
   color: var(--link-hover-color);
 }
 
-a:visited {
+a:visited, .things-link:visited {
   color: var(--link-hover-color);
+}
+
+a {
+  text-decoration: underline;
+}
+
+.things-link {
+  text-decoration: none;
 }
 
 p {
