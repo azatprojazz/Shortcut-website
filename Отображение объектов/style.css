@@ -27,6 +27,7 @@ h1 {
   border-radius: 10px;
   border: 1px solid var(--acent-color);
   box-shadow: var(--box-shadow);
+  word-wrap: break-word;
 }
 
 .things_link {
