@@ -1,0 +1,12 @@
+.page__theme-dark {
+  --box-shadow: 1px 2px 3px var(--acent-color);
+
+  --acent-color: rgb(255, 183, 0);
+  --color-bg: #121212;
+  --color-container: #2a2a2a;
+  --color-container-border: var(--acent-color);
+  --color-rating: rgb(255, 136, 0);
+  --color-text: white;
+  --link-color: var(--acent-color);
+  --link-hover-color: #ff1744;
+}
