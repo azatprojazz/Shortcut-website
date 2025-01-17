@@ -19,7 +19,6 @@ h1 {
 }
 
 .container {
-  overflow: hidden;
   box-sizing: border-box;
   max-width: 355px;
   margin: 15px auto;
@@ -53,6 +52,8 @@ text-overflow: ellipsis;
 
 .things-link {
   text-decoration: none;
+    overflow: visible;
+white-space: wrap;
 }
 
 p {
