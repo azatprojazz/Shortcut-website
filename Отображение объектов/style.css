@@ -44,10 +44,12 @@ a:visited, .things-link:visited {
 }
 
 a {
+  display: inline-block;
   text-decoration: underline;
   overflow: hidden;
 white-space: nowrap;
 text-overflow: ellipsis;
+  -webkit-text-overflow: ellipsis;
 }
 
 .things-link {
