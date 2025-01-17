@@ -49,12 +49,8 @@ a {
   text-decoration: underline;
   overflow: hidden;
 white-space: nowrap;
-text-overflow: ellipsis;
-  -webkit-text-overflow: ellipsis;
-}
-
-a::after {
-  content: "•••";
+text-overflow: '•••';
+  -webkit-text-overflow: '•••';
 }
 
 .things-link {
