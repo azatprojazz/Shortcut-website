@@ -44,7 +44,7 @@ a:visited, .things-link:visited {
 }
 
 a {
-  display: inline-block;
+  display: block;
   text-decoration: underline;
   overflow: hidden;
 white-space: nowrap;
