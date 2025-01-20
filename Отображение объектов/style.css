@@ -1,4 +1,4 @@
-body {
+.page {
   background-color: var(--color-bg);
   color: var(--color-text);
   font-family: 'Avenir Next', 'Helvetica';
@@ -30,31 +30,38 @@ h1 {
   word-wrap: break-word;
 }
 
-a, .things-link {
+a
+,
+.things-link {
   transition: color 1s;
   color: var(--acent-color);
 }
 
-a:hover, .things-link:hover {
+a:hover
+,
+.things-link:hover {
   color: var(--link-hover-color);
 }
 
-a:visited, .things-link:visited {
+a:visited
+,
+.things-link:visited {
   color: var(--link-hover-color);
 }
 
 a {
   display: inline-block;
+  overflow: hidden;
   width: 100%;
   text-decoration: underline;
-  overflow: hidden;
   white-space: nowrap;
 }
 
 .things-link {
-  text-decoration: none;
   overflow: visible;
+  text-decoration: none;
   white-space: wrap;
+  word-wrap: break-word;
 }
 
 p {
@@ -65,4 +72,41 @@ p {
 
 p:last-of-type {
   padding-bottom: 0;
+}
+
+.paddings {
+  display: block;
+  margin: 4px;
+}
+.content {
+}
+.title-bold {
+}
+.list-item {
+}
+.list-item_ol {
+}
+.list-item_ul {
+}
+.list-item_check {
+}
+.list-item_done {
+}
+.list-item_cancel {
+}
+.citation {
+}
+.highlight {
+}
+.cancel {
+}
+.quote {
+}
+.blockquote {
+}
+.bold {
+}
+.italic {
+}
+.dashed {
 }
