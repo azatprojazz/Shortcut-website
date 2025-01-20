@@ -25,11 +25,11 @@ h1 {
 }
 
 img {
-  box-sizing: border-box;
-  width: 354px;
-  border-radius: 19px 20px 45px 45px;
-  border: 1px solid var(--acent-color);
-  font-size: 0;
+	box-sizing: border-box;
+	width: 354px;
+	border-radius: 19px 20px 25px 25px;
+	border: 1px solid var(--acent-color);
+	font-size: 0;
 }
 
 .kinopoisk-link {
