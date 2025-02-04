@@ -75,7 +75,6 @@ a:visited {
 }
 
 .list-item {
-  display: flex;
   align-items: baseline;
   color: var(--check-list-color);
 }
@@ -102,8 +101,8 @@ a:visited {
 .list-item_check {
   display: flex;
   width: fit-content;
-  margin: 5px 0;
-  padding: 5px 8px;
+  margin: 6px 0;
+  padding: 3px 8px;
   align-items: baseline;
   border-radius: 15px;
   border: 0.5px solid var(--acent-color);
@@ -119,8 +118,8 @@ a:visited {
 .list-item_done {
   display: flex;
   width: fit-content;
-  margin: 5px 0;
-  padding: 5px 8px;
+  margin: 6px 0;
+  padding: 3px 8px;
   align-items: baseline;
   background-color: var(--check-box-color);
   border-radius: 15px;
@@ -137,8 +136,8 @@ a:visited {
 .list-item_cancel {
   display: flex;
   width: fit-content;
-  margin: 5px 0;
-  padding: 5px 8px;
+  margin: 6px 0;
+  padding: 3px 8px;
   align-items: baseline;
   background-color: var(--check-box-color);
   border-radius: 15px;
