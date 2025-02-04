@@ -4,6 +4,12 @@
   --acent-color: rgba(16, 14, 14, 0.8);
   --color-bg: #fff;
   --color-container: #f9f9f9;
-  --color-text: black;
-  --link-hover-color: #c23400;
+  --color-text: var(--acent-color);
+  --link-hover-color: #8097fa;
+  --check-box-emoji: '🔲';
+  --check-list-color: gray;
+  --check-box-color: rgba(232, 222, 222, 0.572);
+  --color-highlight: rgb(247, 218, 113);
+  --color-bg-quote: rgb(255, 216, 216);
+  --color-quote: rgb(124, 0, 0);
 }
