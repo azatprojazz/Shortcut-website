@@ -5,19 +5,24 @@
   font-weight: 500;
 }
 
+.container {
+  box-sizing: border-box;
+  max-width: 355px;
+  margin: 15px auto;
+  background-color: var(--color-container);
+  border-radius: 10px;
+  border: 1px solid var(--acent-color);
+  box-shadow: var(--box-shadow);
+  word-wrap: anywhere;
+}
+
 h1 {
-  margin-top: 0;
-  margin-bottom: 0;
-  padding: 0 10px;
+  margin: 0;
+  padding: 5px 10px;
   font-size: 1.3em;
   font-weight: bold;
 }
-
 .title {
-  width: -moz-available;
-  margin-top: 0;
-  margin-bottom: 3px;
-  padding-bottom: 8px;
   border-bottom: 1px solid var(--acent-color);
 }
 
@@ -25,27 +30,15 @@ h1 {
   font-size: large;
 }
 
-.container {
-	box-sizing: border-box;
-	max-width: 355px;
-	margin: 15px auto;
-	padding: 10px 0 3px;
-	background-color: var(--color-container);
-	border-radius: 10px;
-	border: 1px solid var(--acent-color);
-	box-shadow: var(--box-shadow);
-	word-wrap: anywhere;
-}
-
 .content {
   padding: 5px 12px;
 }
 
 a {
-  font-weight: bold;
-  font-size: 1em;
-  text-decoration: none;
   color: var(--link-color);
+  font-size: 1em;
+  font-weight: bold;
+  text-decoration: none;
 }
 
 a:hover {
@@ -57,8 +50,8 @@ a:visited {
 }
 
 .link-url {
-  overflow-x: auto;
   display: -webkit-box;
+  overflow-x: auto;
   white-space: nowrap;
 }
 
@@ -170,12 +163,12 @@ a:visited {
 
 .quote {
   width: fit-content;
+  margin: 0;
   padding: 5px 10px;
   background-color: var(--color-bg-quote);
   border-radius: 4px;
   color: var(--color-quote);
   font-weight: 600;
-  margin: 0;
 }
 
 .blockquote {
