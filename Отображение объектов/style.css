@@ -26,52 +26,53 @@ h1 {
 }
 
 .container {
-  box-sizing: border-box;
-  max-width: 355px;
-  margin: 15px auto;
-  padding: 7px 0;
-  background-color: var(--color-container);
-  border-radius: 10px;
-  border: 1px solid var(--acent-color);
-  box-shadow: var(--box-shadow);
-  word-wrap: break-word;
-}
-
-a {
-  display: flex;
-  font-weight: bold;
-  text-decoration: none;
-}
-
-a:hover
-,
-a:visited {
-  color: var(--link-hover-color);
-}
-
-.link-url {
-  display: -webkit-box;
-  overflow: hidden;
-  white-space: nowrap;
-}
-
-.link {
-  width: fit-content;
-  border-bottom: 1px solid var(--link-hover-color);
-}
-
-.things-link {
-  color: var(--acent-color);
-  text-decoration: none;
-}
-
-.paddings {
-  display: block;
-  margin: 7px;
+	box-sizing: border-box;
+	max-width: 355px;
+	margin: 15px auto;
+	padding: 10px 0 3px;
+	background-color: var(--color-container);
+	border-radius: 10px;
+	border: 1px solid var(--acent-color);
+	box-shadow: var(--box-shadow);
+	word-wrap: anywhere;
 }
 
 .content {
   padding: 5px 12px;
+}
+
+a {
+  font-weight: bold;
+  font-size: 1em;
+  text-decoration: none;
+  color: var(--link-color);
+}
+
+a:hover {
+  color: var(--link-hover-color);
+}
+
+a:visited {
+  color: var(--link-visited-color);
+}
+
+.link-url {
+  overflow-x: auto;
+  display: -webkit-box;
+  white-space: nowrap;
+}
+
+.link {
+  /* width: fit-content; */
+}
+
+.things-link {
+  color: var(--acent-color);
+}
+
+.paddings {
+  display: block;
+  margin: 6px;
 }
 
 .list-item {
@@ -99,13 +100,12 @@ a:visited {
 }
 
 .list-item_check {
-  display: flex;
   width: fit-content;
   margin: 6px 0;
-  padding: 3px 8px;
+  padding: 1px 7px;
   align-items: baseline;
-  border-radius: 15px;
-  border: 0.5px solid var(--acent-color);
+  border-radius: 8px;
+  border: 1px solid var(--acent-color);
   color: var(--acent-color);
 }
 
@@ -116,14 +116,13 @@ a:visited {
 }
 
 .list-item_done {
-  display: flex;
   width: fit-content;
   margin: 6px 0;
-  padding: 3px 8px;
+  padding: 1px 7px;
   align-items: baseline;
   background-color: var(--check-box-color);
-  border-radius: 15px;
-  border: 0.5px solid var(--acent-color);
+  border-radius: 8px;
+  border: 1px solid var(--acent-color);
   color: var(--acent-color);
 }
 
@@ -134,14 +133,13 @@ a:visited {
 }
 
 .list-item_cancel {
-  display: flex;
   width: fit-content;
   margin: 6px 0;
-  padding: 3px 8px;
+  padding: 1px 7px;
   align-items: baseline;
   background-color: var(--check-box-color);
-  border-radius: 15px;
-  border: 0.5px solid var(--acent-color);
+  border-radius: 8px;
+  border: 1px solid var(--acent-color);
   color: var(--acent-color);
 
   text-decoration-line: line-through;
@@ -177,9 +175,11 @@ a:visited {
   border-radius: 4px;
   color: var(--color-quote);
   font-weight: 600;
+  margin: 0;
 }
 
 .blockquote {
+  margin: 0;
   padding: 8px 10px;
   background-color: var(--color-bg-quote);
   border-radius: 4px;
@@ -198,6 +198,7 @@ a:visited {
 }
 
 .dashed {
+  display: block;
   margin: 10px 0;
   border-top: 2px dashed var(--color-quote);
 }

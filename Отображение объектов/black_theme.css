@@ -1,7 +1,7 @@
 .page__theme-dark {
   --box-shadow: 1px 2px 4px var(--acent-color);
 
-  --acent-color: rgba(255, 192, 33, 0.8);
+  --acent-color: rgb(255, 192, 33);
   --check-box-color: rgb(83, 83, 83);
   --check-box-emoji: '🔳';
   --check-list-color: gray;
@@ -11,5 +11,7 @@
   --color-highlight: rgb(150, 42, 71);
   --color-quote: rgb(239, 181, 105);
   --color-text: var(--acent-color);
-  --link-hover-color: #ff1744;
+  --link-color: rgb(255, 206, 114);
+  --link-hover-color: #ff2c56;
+  --link-visited-color: #ff8080;
 }
