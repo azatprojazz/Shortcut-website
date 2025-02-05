@@ -22,6 +22,7 @@ h1 {
   font-size: 1.3em;
   font-weight: bold;
 }
+
 .title {
   border-bottom: 1px solid var(--acent-color);
 }
@@ -50,13 +51,9 @@ a:visited {
 }
 
 .link-url {
-  display: -webkit-box;
+  display: block;
   overflow-x: auto;
   white-space: nowrap;
-}
-
-.link {
-  /* width: fit-content; */
 }
 
 .things-link {
