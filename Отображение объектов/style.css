@@ -37,7 +37,7 @@ h1 {
 
 a {
   color: var(--link-color);
-  font-size: 1em;
+  font-size: 15px;
   font-weight: bold;
   text-decoration: none;
 }
@@ -58,11 +58,12 @@ a:visited {
 
 .things-link {
   color: var(--acent-color);
+  font-size: 1em;
 }
 
 .paddings {
   display: block;
-  margin: 6px;
+  margin: 4px;
 }
 
 .list-item {
