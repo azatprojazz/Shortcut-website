@@ -1,49 +1,54 @@
+// Общий токен больше не нужен, поскольку команда теперь вызывается через Shortcuts, так что его убираем
+
 // Длительность удержания для определения long press (в мс)
-const holdDuration = 250;
+const holdDuration = 600;
 
 /**
- * Формирует URL и отправляет его через Shortcuts.
- * Формат URL:
+ * Функция формирования и отправки URL запроса через Shortcuts.
+ * Новый формат URL:
  * shortcuts://run-shortcut?name=COMMAND&input=text&text=TASK_ID
  *
- * Команда определяется по состоянию:
- *   - Done   – если state === "checked"
- *   - Check  – если state === "incomplete"
- *   - Cancel – если state === "cancelled"
- *
- * Для мобильных устройств используется ссылка с target="_blank",
- * для десктопа – iframe.
+ * Команды зависят от состояния:
+ *  - Done   – завершено (state === "checked")
+ *  - Check  – не завершено (state === "incomplete")
+ *  - Cancel – отмена (state === "cancelled")
  *
  * @param {string} taskId - Уникальный идентификатор задачи.
  * @param {Object} params - Объект с параметрами состояния.
+ *                          Если передан ключ "completed", то его значение true дает команду Done,
+ *                          false – команду Check.
+ *                          Если передан ключ "canceled", то команда Cancel.
  */
 function sendThingsRequest(taskId, params) {
-  let commandName = '';
+  // Определяем название команды по переданным параметрам
+  let commandName = "";
   if ('completed' in params) {
-    commandName = params.completed ? 'Done' : 'Check';
+    // Если completed равен true – команда Done, иначе Check
+    commandName = params.completed ? "Done" : "Check";
   } else if ('canceled' in params) {
-    commandName = 'Cancel';
+    commandName = "Cancel";
   } else {
-    console.error('Не указаны параметры состояния для задачи', taskId);
+    console.error("Не указаны параметры состояния для задачи", taskId);
     return;
   }
-
-  const url = `shortcuts://run-shortcut?name=${encodeURIComponent(commandName)}&input=text&text=${encodeURIComponent(
-    taskId
-  )}`;
-  console.log('Отправляю URL:', url);
-
-  if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
-    const a = document.createElement('a');
+  
+  // Формируем URL в требуемом формате:
+  // shortcuts://run-shortcut?name=COMMAND&input=text&text=TASK_ID
+  const url = `shortcuts://run-shortcut?name=${encodeURIComponent(commandName)}&input=text&text=${encodeURIComponent(taskId)}`;
+  console.log("Отправляю URL:", url);
+  
+  // Отправляем запрос через создание невидимой ссылки (для мобильных устройств)
+  if ("ontouchstart" in window || navigator.maxTouchPoints > 0) {
+    const a = document.createElement("a");
     a.href = url;
-    a.target = '_blank';
-    a.style.display = 'none';
+    a.style.display = "none";
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
   } else {
-    const iframe = document.createElement('iframe');
-    iframe.style.display = 'none';
+    // Для десктопа можно использовать iframe
+    const iframe = document.createElement("iframe");
+    iframe.style.display = "none";
     iframe.src = url;
     document.body.appendChild(iframe);
     setTimeout(() => {
@@ -53,90 +58,73 @@ function sendThingsRequest(taskId, params) {
 }
 
 /**
- * Сохраняет состояние задачи в localStorage.
- * @param {string} taskId - Уникальный идентификатор задачи.
- * @param {string} state - Состояние ("incomplete", "checked", "cancelled").
- */
-function saveState(taskId, state) {
-  localStorage.setItem('taskState_' + taskId, state);
-}
-
-/**
- * Загружает состояние задачи из localStorage.
- * Если не найдено, возвращает "incomplete".
- * @param {string} taskId - Уникальный идентификатор задачи.
- * @returns {string} Состояние.
- */
-function loadState(taskId) {
-  return localStorage.getItem('taskState_' + taskId) || 'incomplete';
-}
-
-/**
  * Основная логика для каждого элемента задачи.
- * Обрабатывает клики, long press, touch-события и Alt/Option‑логику.
- * Состояние сохраняется в localStorage.
+ * Обрабатывает клики, long press, touch-события и Alt/Option-логику.
+ * @param {HTMLElement} taskElem - Элемент, содержащий data-task-id.
  */
-const taskElems = document.querySelectorAll('.task');
-taskElems.forEach(function (taskElem) {
+document.querySelectorAll('.task').forEach(function(taskElem) {
+  // Получаем уникальный идентификатор задачи из data-task-id
   let taskId = taskElem.dataset.taskId;
   if (!taskId) {
-    console.error('Не найден taskId для элемента:', taskElem);
+    console.error("Не найден taskId для элемента:", taskElem);
     return;
   }
-
-  // Загружаем сохраненное состояние или "incomplete"
-  let state = loadState(taskId);
+  
+  // Возможные состояния:
+  // "incomplete" – выключено (начальное состояние)
+  // "checked"    – включено (задача выполнена)
+  // "cancelled"  – отменено (отображается крестиком)
+  let state = "incomplete";
   let holdTimer = null;
-
+  
   /**
-   * Обновляет визуальное состояние элемента (через классы) и сохраняет состояние.
+   * Обновляет визуальное отображение (классы) элемента.
    */
   function updateUI() {
     taskElem.classList.remove('checked', 'cancelled');
-    if (state === 'checked') {
+    if (state === "checked") {
       taskElem.classList.add('checked');
-    } else if (state === 'cancelled') {
+    } else if (state === "cancelled") {
       taskElem.classList.add('cancelled');
     }
-    saveState(taskId, state);
   }
-
+  
   /**
    * Переключает состояние между "incomplete" и "checked".
-   * Если состояние "cancelled", сбрасывает его в "incomplete".
+   * Если текущее состояние равно "cancelled", сбрасывает его в "incomplete".
    */
   function toggleComplete() {
-    if (state === 'cancelled') {
-      state = 'incomplete';
+    if (state === "cancelled") {
+      state = "incomplete";
       updateUI();
       sendThingsRequest(taskId, { completed: false });
       return;
     }
-    state = state === 'incomplete' ? 'checked' : 'incomplete';
+    state = (state === "incomplete") ? "checked" : "incomplete";
     updateUI();
-    sendThingsRequest(taskId, { completed: state === 'checked' });
+    sendThingsRequest(taskId, { completed: state === "checked" });
   }
-
+  
   /**
    * Устанавливает состояние "cancelled" (отмена задачи).
    */
   function cancelTask() {
-    state = 'cancelled';
+    state = "cancelled";
     updateUI();
     sendThingsRequest(taskId, { canceled: true });
   }
-
+  
   /**
    * Обработчик начала нажатия (mousedown, touchstart).
-   * Если нажата клавиша Alt/Option, выполняется логика отмены.
-   * Иначе запускается таймер для определения long press.
+   * Если нажата клавиша Alt/Option, сразу выполняется логика отмены.
+   * Иначе запускается таймер для определения долгого удержания.
    * @param {Event} e - событие.
    */
   function handleStart(e) {
     e.preventDefault();
     if (e.altKey) {
-      if (state === 'cancelled') {
-        state = 'incomplete';
+      if (state === "cancelled") {
+        state = "incomplete";
         updateUI();
         sendThingsRequest(taskId, { completed: false });
       } else {
@@ -144,15 +132,15 @@ taskElems.forEach(function (taskElem) {
       }
       return;
     }
-    holdTimer = setTimeout(function () {
+    holdTimer = setTimeout(function() {
       cancelTask();
       holdTimer = null;
     }, holdDuration);
   }
-
+  
   /**
    * Обработчик завершения нажатия (mouseup, touchend).
-   * Если таймер удержания еще активен, это обычный клик.
+   * Если таймер удержания еще активен, значит это обычный клик.
    * @param {Event} e - событие.
    */
   function handleEnd(e) {
@@ -163,7 +151,7 @@ taskElems.forEach(function (taskElem) {
       toggleComplete();
     }
   }
-
+  
   /**
    * Обработчик отмены нажатия (mouseleave, touchcancel).
    * Сбрасывает таймер удержания.
@@ -175,17 +163,13 @@ taskElems.forEach(function (taskElem) {
       holdTimer = null;
     }
   }
-
+  
+  // Навешиваем события мыши
   taskElem.addEventListener('mousedown', handleStart);
   taskElem.addEventListener('mouseup', handleEnd);
   taskElem.addEventListener('mouseleave', handleCancel);
+  // Навешиваем touch-события для мобильных устройств
   taskElem.addEventListener('touchstart', handleStart);
   taskElem.addEventListener('touchend', handleEnd);
   taskElem.addEventListener('touchcancel', handleCancel);
-
-  // Сразу обновляем UI для элемента
-  updateUI();
 });
-
-// Когда все задачи обработаны, показываем содержимое страницы
-document.body.style.display = 'block';
