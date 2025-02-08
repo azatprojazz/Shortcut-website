@@ -15,9 +15,8 @@
   word-wrap: anywhere;
 }
 
-.main,
-.footer {
-  padding: 9px 9px;
+.main {
+  padding: 6px 9px;
 }
 
 .margins {
@@ -207,54 +206,21 @@
   border-top: 2px dashed var(--color-quote);
 }
 
-.tags,
+.footer {
+  display: flex;
+  padding: 10px 9px;
+  align-items: center;
+  gap: 5px;
+  flex-flow: wrap;
+}
+
 .date,
 .deadline,
 .when {
-  padding: 1px 10px;
+  padding: 1px 7px;
   font-weight: bold;
   border-radius: 15px;
-}
-
-.tags {
-  display: inline-block;
-  margin-bottom: 8px;
-  background-color: var(--color-text-tags);
-  color: var(--color-text-light);
-}
-
-.date {
-  width: fit-content;
-  margin-bottom: 8px;
-  background-color: var(--color-text-date);
-  color: var(--color-text-light);
-}
-
-.date::before {
-  content: '★';
-  margin-right: 4px;
-  color: var(--color-text-date-star);
-}
-
-.checkbox-container {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.deadline {
-  background-color: var(--color-deadline);
-  color: var(--color-text-light);
-}
-
-.deadline::before {
-  content: '🚩';
-  margin-right: 4px;
-}
-
-.when {
-  border: 1px solid var(--acent-color);
-  color: var(--check-list-color);
+  align-self: center;
 }
 
 /* Базовые стили квадратного чекбокса */
@@ -264,10 +230,46 @@
   box-sizing: border-box;
   width: 24px;
   height: 24px;
+  margin-right: 3px;
   border: 2px solid var(--check-list-color);
   border-radius: 7px;
   cursor: pointer;
   transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.date {
+  grid-area: 2/1;
+  background-color: var(--color-text-date);
+  color: var(--color-text-light);
+}
+
+.date-container {
+  display: grid;
+  grid-template: 50% 50% / max-content max-content;
+  gap: 5px;
+}
+
+.deadline {
+  grid-area: 1/1;
+  background-color: var(--color-deadline);
+  color: var(--color-text-light);
+}
+
+.when {
+  grid-area: 1/2;
+  border: 1px solid var(--acent-color);
+  color: var(--check-list-color);
+}
+
+.deadline::before {
+  content: '🚩';
+  margin-right: 4px;
+}
+
+.date::before {
+  content: '★';
+  margin-right: 4px;
+  color: var(--color-text-date-star);
 }
 
 .checkbox:hover {
