@@ -216,11 +216,6 @@
   white-space: nowrap;
 }
 
-.tags {
-  background-color: var(--color-text-tags);
-  color: var(--color-text-light);
-}
-
 .footer {
   display: grid;
   overflow-x: auto;
@@ -234,10 +229,17 @@
 .date,
 .deadline,
 .when {
-  padding: 0 10px;
+  padding: 2px 7px;
   align-self: center;
   font-weight: bold;
   border-radius: 7px;
+}
+
+.tags {
+  background-color: var(--color-text-tags);
+  color: var(--color-text-light);
+  font-size: 1.2em;
+  padding: 0 7px;
 }
 
 .date {
@@ -274,7 +276,7 @@
   position: relative;
   display: inline-block;
   box-sizing: border-box;
-  margin-right: 4px;
+  margin-right: 5px;
   width: 30px;
   height: 30px;
   border: 3px solid var(--check-list-color);
