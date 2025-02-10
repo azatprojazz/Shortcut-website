@@ -4,12 +4,12 @@
   --acent-color: rgba(16, 14, 14, 0.8);
   --check-box-color: rgb(236, 236, 236);
   --check-box-emoji: '🔲';
-  --check-list-color: gray;
+  --check-list-color: #999;
   --color-bg: #fff;
   --color-bg-quote: rgb(255, 216, 216);
-  --color-checkbox-cancel: #d9534f;
-  --color-checkbox-checked: #007aff;
-  --color-checkbox-hover: rgb(199, 195, 195);
+  --color-checkbox-cancel: #f44336;
+  --color-checkbox-checked: #4caf50;
+  --color-checkbox-hover: #666;
   --color-container: #f9f9f9;
   --color-deadline: rgb(250, 84, 84);
   --color-highlight: rgb(247, 218, 113);
@@ -17,7 +17,7 @@
   --color-text-dark: var(--acent-color);
   --color-text-date: rgb(255, 172, 28);
   --color-text-date-star: gold;
-  --color-text-light: rgb(255, 255, 255);
+  --color-text-light: #fff;
   --color-text-tags: rgb(0, 191, 51);
   --link-color: #544bff;
   --link-hover-color: #849aff;
