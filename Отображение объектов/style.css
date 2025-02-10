@@ -229,7 +229,7 @@
 .date,
 .deadline,
 .when {
-  padding: 0 7px;
+  padding: 1px 6px;
   align-self: center;
   font-weight: bold;
   border-radius: 7px;
@@ -239,6 +239,7 @@
   font-size: 1.2em;
   background-color: var(--color-text-tags);
   color: var(--color-text-light);
+  padding: 1px 1px;
 }
 
 .date {
