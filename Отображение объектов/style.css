@@ -239,7 +239,7 @@
 .tags {
   background-color: var(--color-text-tags);
   color: var(--color-text-light);
-  padding: 1px 1px;
+  padding: 1px 5px;
 }
 
 .date {
