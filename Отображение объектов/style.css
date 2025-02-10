@@ -229,17 +229,16 @@
 .date,
 .deadline,
 .when {
-  padding: 2px 7px;
+  padding: 0 7px;
   align-self: center;
   font-weight: bold;
   border-radius: 7px;
 }
 
 .tags {
+  font-size: 1.2em;
   background-color: var(--color-text-tags);
   color: var(--color-text-light);
-  font-size: 1.2em;
-  padding: 0 7px;
 }
 
 .date {
@@ -276,9 +275,9 @@
   position: relative;
   display: inline-block;
   box-sizing: border-box;
-  margin-right: 5px;
   width: 30px;
   height: 30px;
+  margin-right: 5px;
   border: 3px solid var(--check-list-color);
   border-radius: 8px;
   cursor: pointer;
@@ -316,14 +315,14 @@
   position: absolute;
   top: 1px;    /* можно подстроить под дизайн */
   left: 7px;   /* можно подстроить под дизайн */
-	width: 7px;
-	height: 14px;
+  width: 7px;
+  height: 14px;
   border: solid var(--color-text-light);
-	border-width: 0 4px 4px 0;
+  border-width: 0 4px 4px 0;
   transform: rotate(45deg) scale(0);
-  opacity: 0;
   /* Анимация галочки с задержкой, чтобы сначала отработал 3D‑эффект */
   animation: drawCheck 0.5s forwards 0.3s;
+  opacity: 0;
 }
 
 @keyframes drawCheck {
@@ -345,8 +344,8 @@
 }
 
 :root {
-  --color-checkbox-cancel: #f44336; /* базовый красный для отмены */
   --color-bg: #fff;                /* цвет линий крестика */
+  --color-checkbox-cancel: #f44336; /* базовый красный для отмены */
 }
 
 /* Стили для состояния "отменено" */
@@ -383,50 +382,50 @@
 
 /* Первая линия крестика */
 .checkbox.cancelled::before {
-  width: 20px;
-  height: 5px;
   top: 50%;
   left: 50%;
+  width: 20px;
+  height: 5px;
   transform: translate(-50%, -50%) rotate(45deg) scaleX(0);
   animation: drawCross1 0.4s forwards 0.4s;
 }
 
 /* Вторая линия крестика */
 .checkbox.cancelled::after {
-  width: 20px;
-  height: 5px;
   top: 50%;
   left: 50%;
+  width: 20px;
+  height: 5px;
   transform: translate(-50%, -50%) rotate(-45deg) scaleX(0);
   animation: drawCross2 0.4s forwards 0.5s;
 }
 
 @keyframes drawCross1 {
   0% {
-    opacity: 0;
     transform: translate(-50%, -50%) rotate(45deg) scaleX(0);
+    opacity: 0;
   }
   50% {
-    opacity: 1;
     transform: translate(-50%, -50%) rotate(45deg) scaleX(1.3);
+    opacity: 1;
   }
   100% {
-    opacity: 1;
     transform: translate(-50%, -50%) rotate(45deg) scaleX(1);
+    opacity: 1;
   }
 }
 
 @keyframes drawCross2 {
   0% {
-    opacity: 0;
     transform: translate(-50%, -50%) rotate(-45deg) scaleX(0);
+    opacity: 0;
   }
   50% {
-    opacity: 1;
     transform: translate(-50%, -50%) rotate(-45deg) scaleX(1.3);
+    opacity: 1;
   }
   100% {
-    opacity: 1;
     transform: translate(-50%, -50%) rotate(-45deg) scaleX(1);
+    opacity: 1;
   }
 }
