@@ -233,10 +233,10 @@
   align-self: center;
   font-weight: bold;
   border-radius: 7px;
+  font-size: 1em;
 }
 
 .tags {
-  font-size: 1.2em;
   background-color: var(--color-text-tags);
   color: var(--color-text-light);
   padding: 1px 1px;
