@@ -92,26 +92,34 @@ document.querySelectorAll('.task').forEach(function(taskElem) {
   /**
    * Переключает состояние между "incomplete" и "checked".
    * Если текущее состояние равно "cancelled", сбрасывает его в "incomplete".
+   * UI обновляется сразу, а отправка запроса откладывается на 1000 мс.
    */
   function toggleComplete() {
     if (state === "cancelled") {
       state = "incomplete";
       updateUI();
-      sendThingsRequest(taskId, { completed: false });
+      setTimeout(() => {
+        sendThingsRequest(taskId, { completed: false });
+      }, 1000);
       return;
     }
     state = (state === "incomplete") ? "checked" : "incomplete";
     updateUI();
-    sendThingsRequest(taskId, { completed: state === "checked" });
+    setTimeout(() => {
+      sendThingsRequest(taskId, { completed: state === "checked" });
+    }, 1000);
   }
   
   /**
    * Устанавливает состояние "cancelled" (отмена задачи).
+   * UI обновляется сразу, а отправка запроса откладывается на 1000 мс.
    */
   function cancelTask() {
     state = "cancelled";
     updateUI();
-    sendThingsRequest(taskId, { canceled: true });
+    setTimeout(() => {
+      sendThingsRequest(taskId, { canceled: true });
+    }, 1000);
   }
   
   /**
@@ -126,7 +134,9 @@ document.querySelectorAll('.task').forEach(function(taskElem) {
       if (state === "cancelled") {
         state = "incomplete";
         updateUI();
-        sendThingsRequest(taskId, { completed: false });
+        setTimeout(() => {
+          sendThingsRequest(taskId, { completed: false });
+        }, 1000);
       } else {
         cancelTask();
       }
@@ -140,7 +150,8 @@ document.querySelectorAll('.task').forEach(function(taskElem) {
   
   /**
    * Обработчик завершения нажатия (mouseup, touchend).
-   * Если таймер удержания еще активен, значит это обычный клик.
+   * Если таймер удержания ещё активен, значит это обычный клик.
+   * При обычном клике UI обновляется сразу, а запрос отправляется через 1 секунду.
    * @param {Event} e - событие.
    */
   function handleEnd(e) {
@@ -148,8 +159,7 @@ document.querySelectorAll('.task').forEach(function(taskElem) {
     if (holdTimer) {
       clearTimeout(holdTimer);
       holdTimer = null;
-    // Запускаем переключение состояния с задержкой 500 мс
-    setTimeout(toggleComplete, 1000);
+      toggleComplete();
     }
   }
   
