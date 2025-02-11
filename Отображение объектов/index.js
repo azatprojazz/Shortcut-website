@@ -149,7 +149,7 @@ document.querySelectorAll('.task').forEach(function(taskElem) {
       clearTimeout(holdTimer);
       holdTimer = null;
     // Запускаем переключение состояния с задержкой 500 мс
-    setTimeout(toggleComplete, 400);
+    setTimeout(toggleComplete, 1000);
     }
   }
   
