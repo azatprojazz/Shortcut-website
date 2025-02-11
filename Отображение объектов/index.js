@@ -4,18 +4,6 @@
 const holdDuration = 200;
 
 /**
- * Синхронная функция ожидания (блокирующая главный поток).
- * Использовать не рекомендуется, так как она «замораживает» UI.
- * @param {number} ms - время ожидания в миллисекундах.
- */
-function sleepSync(ms) {
-  const start = Date.now();
-  while (Date.now() - start < ms) {
-    // пустой цикл ожидания
-  }
-}
-
-/**
  * Функция формирования и отправки URL запроса через Shortcuts.
  * Новый формат URL:
  * shortcuts://run-shortcut?name=COMMAND&input=text&text=TASK_ID
@@ -32,8 +20,10 @@ function sleepSync(ms) {
  *                          Если передан ключ "canceled", то команда Cancel.
  */
 function sendThingsRequest(taskId, params) {
+  // Определяем название команды по переданным параметрам
   let commandName = "";
   if ('completed' in params) {
+    // Если completed равен true – команда Done, иначе Check
     commandName = params.completed ? "Done" : "Check";
   } else if ('canceled' in params) {
     commandName = "Cancel";
@@ -42,9 +32,12 @@ function sendThingsRequest(taskId, params) {
     return;
   }
   
+  // Формируем URL в требуемом формате:
+  // shortcuts://run-shortcut?name=COMMAND&input=text&text=TASK_ID
   const url = `shortcuts://run-shortcut?name=${encodeURIComponent(commandName)}&input=text&text=${encodeURIComponent(taskId)}`;
   console.log("Отправляю URL:", url);
   
+  // Отправляем запрос через создание невидимой ссылки (для мобильных устройств)
   if ("ontouchstart" in window || navigator.maxTouchPoints > 0) {
     const a = document.createElement("a");
     a.href = url;
@@ -53,6 +46,7 @@ function sendThingsRequest(taskId, params) {
     a.click();
     document.body.removeChild(a);
   } else {
+    // Для десктопа можно использовать iframe
     const iframe = document.createElement("iframe");
     iframe.style.display = "none";
     iframe.src = url;
@@ -65,8 +59,11 @@ function sendThingsRequest(taskId, params) {
 
 /**
  * Основная логика для каждого элемента задачи.
+ * Обрабатывает клики, long press, touch-события и Alt/Option-логику.
+ * @param {HTMLElement} taskElem - Элемент, содержащий data-task-id.
  */
 document.querySelectorAll('.task').forEach(function(taskElem) {
+  // Получаем уникальный идентификатор задачи из data-task-id
   let taskId = taskElem.dataset.taskId;
   if (!taskId) {
     console.error("Не найден taskId для элемента:", taskElem);
@@ -94,41 +91,32 @@ document.querySelectorAll('.task').forEach(function(taskElem) {
   
   /**
    * Переключает состояние между "incomplete" и "checked".
-   * Если состояние "cancelled", сбрасывает его в "incomplete".
-   * UI обновляется сразу, затем синхронно ждём 1 секунду и выполняется sendThingsRequest.
+   * Если текущее состояние равно "cancelled", сбрасывает его в "incomplete".
    */
   function toggleComplete() {
     if (state === "cancelled") {
       state = "incomplete";
       updateUI();
-      // Принудительно читаем свойство для запуска рефлоу (чтобы изменения UI применились до ожидания)
-      void taskElem.offsetWidth;
-      sleepSync(1000);
       sendThingsRequest(taskId, { completed: false });
       return;
     }
     state = (state === "incomplete") ? "checked" : "incomplete";
     updateUI();
-    void taskElem.offsetWidth;
-    sleepSync(1000);
     sendThingsRequest(taskId, { completed: state === "checked" });
   }
   
   /**
    * Устанавливает состояние "cancelled" (отмена задачи).
-   * UI обновляется сразу, затем ждем 1 секунду и вызывается sendThingsRequest.
    */
   function cancelTask() {
     state = "cancelled";
     updateUI();
-    void taskElem.offsetWidth;
-    sleepSync(1000);
     sendThingsRequest(taskId, { canceled: true });
   }
   
   /**
    * Обработчик начала нажатия (mousedown, touchstart).
-   * Если нажата клавиша Alt/Option – сразу выполняется логика отмены.
+   * Если нажата клавиша Alt/Option, сразу выполняется логика отмены.
    * Иначе запускается таймер для определения долгого удержания.
    * @param {Event} e - событие.
    */
@@ -138,8 +126,6 @@ document.querySelectorAll('.task').forEach(function(taskElem) {
       if (state === "cancelled") {
         state = "incomplete";
         updateUI();
-        void taskElem.offsetWidth;
-        sleepSync(1000);
         sendThingsRequest(taskId, { completed: false });
       } else {
         cancelTask();
@@ -154,7 +140,7 @@ document.querySelectorAll('.task').forEach(function(taskElem) {
   
   /**
    * Обработчик завершения нажатия (mouseup, touchend).
-   * Если таймер удержания ещё активен, считаем это обычным кликом.
+   * Если таймер удержания еще активен, значит это обычный клик.
    * @param {Event} e - событие.
    */
   function handleEnd(e) {
