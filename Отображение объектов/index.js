@@ -1,7 +1,7 @@
 // Общий токен больше не нужен, поскольку команда теперь вызывается через Shortcuts, так что его убираем
 
 // Длительность удержания для определения long press (в мс)
-const holdDuration = 600;
+const holdDuration = 200;
 
 /**
  * Функция формирования и отправки URL запроса через Shortcuts.
@@ -148,7 +148,8 @@ document.querySelectorAll('.task').forEach(function(taskElem) {
     if (holdTimer) {
       clearTimeout(holdTimer);
       holdTimer = null;
-      toggleComplete();
+    // Запускаем переключение состояния с задержкой 500 мс
+    setTimeout(toggleComplete, 400);
     }
   }
   

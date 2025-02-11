@@ -229,11 +229,12 @@
 .date,
 .deadline,
 .when {
+  display: flex;
   padding: 1px 4px;
   align-self: center;
+  font-size: 1em;
   font-weight: bold;
   border-radius: 7px;
-  font-size: 1em;
 }
 
 .tags {
@@ -268,6 +269,7 @@
   content: '★';
   margin-right: 4px;
   color: var(--color-text-date-star);
+  text-align: center;
 }
 
 /* Базовый стиль чекбокса */
@@ -341,11 +343,6 @@
     transform: rotate(45deg) scale(1);
     opacity: 1;
   }
-}
-
-:root {
-  --color-bg: #fff;                /* цвет линий крестика */
-  --color-checkbox-cancel: #f44336; /* базовый красный для отмены */
 }
 
 /* Стили для состояния "отменено" */
