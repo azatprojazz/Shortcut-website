@@ -260,18 +260,6 @@
   color: var(--check-list-color);
 }
 
-.deadline::before {
-  content: '🚩';
-  margin-right: 4px;
-}
-
-.date::before {
-  content: '★';
-  margin-right: 4px;
-  color: var(--color-text-date-star);
-  text-align: center;
-}
-
 /* Базовый стиль чекбокса */
 .checkbox {
   position: relative;
