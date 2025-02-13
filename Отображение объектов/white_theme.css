@@ -1,25 +1,65 @@
-.page__theme-white {
-  --box-shadow: 1px 3px 4px var(--acent-color);
+   .page__theme-white {
+    /* Colors */
+    --color-black: black;
+    --color-black-2: rgba(16, 14, 14, 0.5);
+    --color-blue: #6159ff;
+    --color-blue-2: #007aff;
+    --color-blue-3: #849aff;
+    --color-blue-4: #a0b2ff;
+    --color-gray-2: #999;
+    --color-gray-3: #ccc;
+    --color-gray:  #666;
+    --color-green: rgb(0, 202, 54);
+    --color-orange: rgb(251, 173, 37);
+    --color-red: rgb(250, 84, 84);
+    --color-red-2: rgb(255, 219, 219);
+    --color-white: white;
+    --color-white-2: rgb(236, 236, 236);
+    --color-yellow: rgb(247, 218, 113);
 
-  --acent-color: rgba(16, 14, 14, 0.8);
-  --check-box-color: rgb(236, 236, 236);
-  --check-box-emoji: '🔲';
-  --check-list-color: #999;
-  --color-bg: #fff;
-  --color-bg-quote: rgb(255, 216, 216);
-  --color-checkbox-cancel: #f44336;
-  --color-checkbox-checked: #007aff;
-  --color-checkbox-hover: #666;
-  --color-container: #f9f9f9;
-  --color-deadline: rgb(250, 84, 84);
-  --color-highlight: rgb(247, 218, 113);
-  --color-quote: rgb(124, 0, 0);
-  --color-text-dark: var(--acent-color);
-  --color-text-date: rgb(255, 172, 28);
-  --color-text-date-star: gold;
-  --color-text-light: #fff;
-  --color-text-tags: rgb(0, 191, 51);
-  --link-color: #544bff;
-  --link-hover-color: #849aff;
-  --link-visited-color: #aab9ff;
-}
+    /* BG colors */
+    --color-bg: var(--color-white);
+    --color-bg-tags: var(--color-green);
+    --color-bg-date: var(--color-orange);
+    --color-bg-deadline: var(--color-red);
+    --color-bg-when: var(--color-gray-2);
+    --color-bg-quote: var(--color-red-2);
+    --color-bg-blockquote: var(--color-red-2);
+    --color-bg-button: var(--color-white);
+    --color-bg-button_hover: var(--color-red);
+    
+    /* Text colors */
+    --color-text: var(--color-black);
+    --color-text-list-item: var(--color-black);
+    --color-text-tags: var(--color-white);
+    --color-text-date: var(--color-white);
+    --color-text-deadline: var(--color-white);
+    --color-text-when: var(--color-gray-2);
+    --color-text-link: var(--color-blue-2);
+    --color-text-link_hover: var(--color-blue-3);
+    --color-text-link_visited: var(--color-blue-4);
+    --color-text-button: var(--color-black); 
+    --color-text-button_hover: var(--color-white); 
+    
+    /* Colors decorate */
+    --color-accent: var(--color-black);
+    
+    /* Items colors */
+    --color-highlight: var(--color-yellow);
+    --color-check-list: var(--color-gray-2);
+    --color-list-item_check: var(--color-gray-3);
+    --color-list-item_done: var(--color-gray-2);
+    --color-list-item-bg_done: var(--color-gray-3);
+    --color-list-item_cancel: var(--color-red-2);
+    --color-checkbox: var(--color-gray-3);
+    --color-checkbox_hover: var(--color-gray);
+    --color-checkbox_cancel: var(--color-red);
+    --color-checkbox-cross_cancel: var(--color-white);
+    --color-checkbox_checked: var(--color-blue-2);
+    --color-checkbox-done_checked: var(--color-white);
+
+    /* Parametrs */
+    --emoji-check-box: '🔲';
+    --box-shadow: 0px 2px 5px var(--color-black-2);
+  }
+  

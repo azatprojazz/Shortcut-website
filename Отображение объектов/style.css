@@ -7,17 +7,19 @@
 
 .container {
   overflow: hidden;
-  max-width: 355px;
-  margin: 15px auto;
-  border: 1px solid var(--acent-color);
-  border-radius: 10px;
-  background-color: var(--color-container);
+  margin: 10px auto;
+  border: 1px solid var(--color-accent);
+  border-radius: 8px;
   box-shadow: var(--box-shadow);
   word-wrap: anywhere;
 }
 
+.header {
+  padding: 5px 6px 4px;
+}
+
 .main {
-  padding: 6px 9px;
+  padding: 5px 6px;
 }
 
 .margins {
@@ -25,39 +27,40 @@
   margin: 4px;
 }
 
-.header {
-  padding: 2px 8px;
-}
-
 .link {
   font-size: 15px;
   font-weight: bold;
-  color: var(--link-color);
+  color: var(--color-text-link);
   text-decoration: none;
 }
 
 .link:hover {
-  color: var(--link-hover-color);
+  color: var(--color-text-link_hover);
 }
 
 .link:visited {
-  color: var(--link-visited-color);
+  color: var(--color-text-link_visited);
+}
+
+.link:visited:hover {
+  color: var(--color-text-link_hover);
 }
 
 .header {
-  border-bottom: 1px solid var(--acent-color);
+  border-bottom: 1px solid var(--color-accent);
 }
 
 .main {
   font-weight: 500;
-  border-bottom: 1px solid var(--acent-color);
+  border-bottom: 1px solid var(--color-accent);
 }
 
 .title {
   margin: 0;
   padding: 0;
-  font-size: 1.3em;
+  font-size: 1.2em;
   font-weight: bold;
+  line-height: 1.2;
   hyphens: auto;
   /* word-break: break-all; */
 
@@ -70,7 +73,7 @@
 
 .link__things {
   font-size: 1em;
-  color: var(--acent-color);
+  color: var(--color-text);
 }
 
 .link__url {
@@ -81,7 +84,7 @@
 
 .list-item {
   align-items: baseline;
-  color: var(--check-list-color);
+  color: var(--color-check-list);
 }
 
 .list-item__number {
@@ -90,17 +93,17 @@
 
 .list-item__ol {
   margin-left: 8px;
-  color: var(--acent-color);
+  color: var(--color-text);
 }
 
 .list-item__ul {
-  color: var(--acent-color);
+  color: var(--color-text);
 }
 
 .list-item__ul::before {
   content: '•';
   margin-right: 11px;
-  color: var(--check-list-color);
+  color: var(--color-check-list);
 }
 
 .list-item_check {
@@ -108,15 +111,9 @@
   margin: 6px 0;
   padding: 1px 7px;
   align-items: baseline;
-  border: 1px solid var(--acent-color);
+  border: 2px solid var(--color-list-item_check);
   border-radius: 8px;
-  color: var(--acent-color);
-}
-
-.list-item_check::before {
-  content: var(--check-box);
-  margin-right: 5px;
-  font-size: 0.8em;
+  color: var(--color-text);
 }
 
 .list-item_done {
@@ -124,10 +121,10 @@
   margin: 6px 0;
   padding: 1px 7px;
   align-items: baseline;
-  border: 1px solid var(--acent-color);
+  border: 2px solid var(--color-list-item_done);
   border-radius: 8px;
-  background-color: var(--check-box-color);
-  color: var(--acent-color);
+  background-color: var(--color-list-item-bg_done);
+  color: var(--color-text-list-item);
 }
 
 .list-item_done::before {
@@ -141,10 +138,10 @@
   margin: 6px 0;
   padding: 1px 7px;
   align-items: baseline;
-  border: 1px solid var(--acent-color);
+  border: 2px solid var(--color-accent);
   border-radius: 8px;
-  background-color: var(--check-box-color);
-  color: var(--acent-color);
+  background-color: var(--color-list-item_cancel);
+  color: var(--color-text-list-item);
 
   text-decoration-line: line-through;
 }
@@ -175,11 +172,11 @@
 .quote {
   width: fit-content;
   margin: 0;
-  padding: 2px 5px;
+  padding: 3px 5px;
   font-weight: 600;
   border-radius: 4px;
   background-color: var(--color-bg-quote);
-  color: var(--color-quote);
+  color: var(--color-text);
 }
 
 .blockquote {
@@ -188,8 +185,8 @@
   padding: 8px 10px;
   font-weight: 600;
   border-radius: 4px;
-  background-color: var(--color-bg-quote);
-  color: var(--color-quote);
+  background-color: var(--color-bg-blockquote);
+  color: var(--color-text);
   white-space: nowrap;
 }
 
@@ -203,25 +200,27 @@
 }
 
 .dashed {
+  display: block;
   margin: 10px 0;
-  border-top: 2px dashed var(--color-quote);
+  border-top: 2px dashed var(--color-accent);
 }
 
 .section {
   display: flex;
-  overflow-x: auto;
-  padding: 8px 10px;
-  gap: 5px;
-  border-bottom: 1px solid var(--acent-color);
-  white-space: nowrap;
+  padding: 4px 7px;
+  border-bottom: 1px solid var(--color-accent);
 }
 
 .footer {
   display: grid;
-  overflow-x: auto;
-  padding: 8px 10px;
+  padding: 5px 6px;
   grid-template-columns: min-content max-content max-content max-content;
-  gap: 5px;
+}
+
+.section,
+.footer {
+  overflow-x: auto;
+  gap: 6px;
   white-space: nowrap;
 }
 
@@ -230,102 +229,90 @@
 .deadline,
 .when {
   display: flex;
-  padding: 1px 4px;
+  padding: 1px 5px 0 4px;
   align-self: center;
-  font-size: 1em;
+  font-size: 0.9em;
   font-weight: bold;
-  border-radius: 7px;
+  border-radius: 8px;
 }
 
 .tags {
-  background-color: var(--color-text-tags);
-  color: var(--color-text-light);
+  background-color: var(--color-bg-tags);
+  color: var(--color-text-tags);
 }
 
 .date {
   grid-area: 1/2/1/2;
-  background-color: var(--color-text-date);
-  color: var(--color-text-light);
+  background-color: var(--color-bg-date);
+  color: var(--color-text-date);
 }
 
 .deadline {
   grid-area: 1/3/1/3;
-  background-color: var(--color-deadline);
-  color: var(--color-text-light);
+  background-color: var(--color-bg-deadline);
+  color: var(--color-text-deadline);
 }
 
 .when {
+  padding-bottom: 1px;
   grid-area: 1/4/1/4;
-  border: 1px solid var(--acent-color);
-  color: var(--check-list-color);
+  box-shadow: inset 0 0 0 2px var(--color-bg-when);
+  color: var(--color-text-when);
 }
-
-/* Базовый стиль чекбокса */
+/* Базовые стили для чекбокса */
 .checkbox {
   position: relative;
   display: inline-block;
-  box-sizing: border-box;
-  width: 30px;
-  height: 30px;
-  margin-right: 5px;
-  border: 3px solid var(--check-list-color);
-  border-radius: 8px;
+  width: 23px;
+  height: 23px;
+  border: 2px solid var(--color-checkbox);
+  border-radius: 7px;
   cursor: pointer;
-  transition: background-color 0.3s ease, border-color 0.3s ease;
+  transition: background-color 0.2s, border-color 0.2s;
 }
 
 .checkbox:hover {
-  border-color: var(--color-checkbox-hover);
+  border: 2px solid var(--color-checkbox_hover);
 }
 
-/* Состояние "выполнено" с эффектом 3D-переворота и анимацией галочки */
+/* Состояние "выполнено" — эффект клика с галочкой */
 .checkbox.checked {
-  border-color: var(--color-checkbox-checked);
-  background-color: var(--color-checkbox-checked);
-  animation: pop3d 0.5s ease-out;
+  border-color: transparent;
+  background-color: var(--color-checkbox_checked);
+  animation: clickChecked 0.2s ease-out;
 }
 
-@keyframes pop3d {
+@keyframes clickChecked {
   0% {
-    transform: perspective(100px) rotateX(90deg) scale(0.5);
+    transform: scale(1);
   }
-  60% {
-    transform: perspective(100px) rotateX(-10deg) scale(1.2);
-  }
-  80% {
-    transform: perspective(100px) rotateX(10deg) scale(0.95);
+  50% {
+    transform: scale(0.9);
   }
   100% {
-    transform: perspective(100px) rotateX(0deg) scale(1);
+    transform: scale(1);
   }
 }
 
 .checkbox.checked::after {
   content: '';
   position: absolute;
-  top: 1px;    /* можно подстроить под дизайн */
-  left: 7px;   /* можно подстроить под дизайн */
+  top: 8%;
+  left: 28%;
   width: 7px;
-  height: 14px;
-  border: solid var(--color-text-light);
+  height: 12px;
+  border: solid var(--color-checkbox-done_checked);
   border-width: 0 4px 4px 0;
   transform: rotate(45deg) scale(0);
-  /* Анимация галочки с задержкой, чтобы сначала отработал 3D‑эффект */
-  animation: drawCheck 0.5s forwards 0.3s;
+  animation: drawCheck 0.2s forwards 0.1s;
   opacity: 0;
 }
+
 
 @keyframes drawCheck {
   0% {
     transform: rotate(45deg) scale(0);
     opacity: 0;
-  }
-  50% {
-    transform: rotate(45deg) scale(1.4);
-    opacity: 1;
-  }
-  70% {
-    transform: rotate(45deg) scale(0.9);
   }
   100% {
     transform: rotate(45deg) scale(1);
@@ -333,26 +320,22 @@
   }
 }
 
-/* Стили для состояния "отменено" */
+/* Состояние "отменено" — эффект клика с крестиком */
 .checkbox.cancelled {
-  border-color: var(--color-checkbox-cancel);
-  background-color: var(--color-checkbox-cancel);
-  /* Эффект появления с пульсацией и лёгким покачиванием */
-  animation: cancelledPop 0.5s ease-out;
+  border-color: transparent;
+  background-color: var(--color-checkbox_cancel);
+  animation: clickCancelled 0.2s ease-out;
 }
 
-@keyframes cancelledPop {
+@keyframes clickCancelled {
   0% {
-    transform: scale(0.8) rotate(0deg);
+    transform: scale(1);
   }
   50% {
-    transform: scale(1.2) rotate(-10deg);
-  }
-  70% {
-    transform: scale(0.95) rotate(10deg);
+    transform: scale(0.9);
   }
   100% {
-    transform: scale(1) rotate(0deg);
+    transform: scale(1);
   }
 }
 
@@ -361,38 +344,34 @@
 .checkbox.cancelled::after {
   content: '';
   position: absolute;
-  background: var(--color-bg);
+  top: 50%;
+  left: 51%;
+  background: var(--color-checkbox-cross_cancel); /* Цвет линий крестика */
+  transform-origin: center; /* Центр трансформации */
   opacity: 0;
 }
 
 /* Первая линия крестика */
 .checkbox.cancelled::before {
-  top: 50%;
-  left: 50%;
-  width: 20px;
-  height: 5px;
+  width: 18px;
+  height: 4px;
   transform: translate(-50%, -50%) rotate(45deg) scaleX(0);
-  animation: drawCross1 0.4s forwards 0.4s;
+  animation: drawCross1 0.2s forwards 0.1s;
 }
 
 /* Вторая линия крестика */
 .checkbox.cancelled::after {
-  top: 50%;
-  left: 50%;
-  width: 20px;
-  height: 5px;
+  width: 18px;
+  height: 4px;
   transform: translate(-50%, -50%) rotate(-45deg) scaleX(0);
-  animation: drawCross2 0.4s forwards 0.5s;
+  animation: drawCross2 0.2s forwards 0.15s;
 }
+
 
 @keyframes drawCross1 {
   0% {
     transform: translate(-50%, -50%) rotate(45deg) scaleX(0);
     opacity: 0;
-  }
-  50% {
-    transform: translate(-50%, -50%) rotate(45deg) scaleX(1.3);
-    opacity: 1;
   }
   100% {
     transform: translate(-50%, -50%) rotate(45deg) scaleX(1);
@@ -405,12 +384,82 @@
     transform: translate(-50%, -50%) rotate(-45deg) scaleX(0);
     opacity: 0;
   }
-  50% {
-    transform: translate(-50%, -50%) rotate(-45deg) scaleX(1.3);
-    opacity: 1;
-  }
   100% {
     transform: translate(-50%, -50%) rotate(-45deg) scaleX(1);
     opacity: 1;
+  }
+}
+
+/* Основной стиль для кнопки */
+.complete-all {
+  /* Для позиционирования псевдоэлемента, который будет создавать эффект сияния */
+  position: relative;
+  display: flex;
+  overflow: hidden; /* Скрываем все, что выходит за пределы кнопки */
+  width: 100%;
+  padding: 5px;
+  justify-content: center;
+  font-weight: bold;
+  border: 2px solid var(--color-accent);
+  border-radius: 10px;
+  background-color: var(--color-bg-button);
+  box-shadow: var(--box-shadow);
+  color: var(--color-text-button);
+  cursor: pointer;
+  /* Плавные переходы для трансформаций и смены фона/цвета */
+  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1),
+  background-color 0.3s ease,
+  color 0.3s ease;
+}
+
+/* Эффект при наведении на кнопку */
+.complete-all:hover {
+  background-color: var(--color-bg-button_hover);
+  color: var(--color-text-button_hover);
+  /* Небольшое увеличение кнопки */
+  transform: scale(1.02);
+}
+
+/* Псевдоэлемент ::before для создания эффекта «сияния» */
+/* Этот элемент будет скользить по кнопке при наведении */
+.complete-all::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -75%;      /* Изначально располагается за левой границей кнопки */
+  width: 50%;      /* Ширина эффекта */
+  height: 100%;
+  /* Полупрозрачный белый цвет для имитации блеска */
+  background: rgba(255, 255, 255, 0.2);
+  /* Плавное перемещение эффекта при наведении */
+  transition: left 0.5s ease;
+  /* Наклон, чтобы эффект выглядел динамично */
+  transform: skewX(-25deg);
+}
+
+/* При наведении перемещаем псевдоэлемент за правую границу кнопки */
+.complete-all:hover::before {
+  left: 125%;
+}
+
+/* Анимация пульсации при клике (активном состоянии кнопки) */
+/* Кнопка слегка «сжимаеся» и возвращается в исходное состояние с эффектом боковой тени */
+.complete-all:active {
+  animation: pulse 0.6s;
+}
+
+/* Ключевые кадры для анимации пульсации */
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
+    transform: scale(1);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+    transform: scale(0.98);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+    transform: scale(1);
   }
 }
