@@ -207,7 +207,7 @@
 
 .section {
   display: flex;
-  padding: 4px 5px;
+  padding: 4px 5.5px;
   border-bottom: 1px solid var(--color-accent);
 }
 
