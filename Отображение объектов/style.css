@@ -229,7 +229,7 @@
 .deadline,
 .when {
   display: flex;
-  padding: 1px 4px;
+  padding: 0 4px 1px;
   align-self: center;
   font-size: 0.9em;
   font-weight: bold;
