@@ -397,9 +397,10 @@
   display: flex;
   overflow: hidden; /* Скрываем все, что выходит за пределы кнопки */
   width: 100%;
-  padding: 5px;
+  padding: 10px;
   justify-content: center;
   font-weight: bold;
+  font-size: 1.3em;
   border: 2px solid var(--color-accent);
   border-radius: 10px;
   background-color: var(--color-bg-button);
