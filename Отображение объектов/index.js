@@ -17,10 +17,7 @@ function sendThingsRequest(taskId, params) {
     console.error('Не указаны параметры состояния для задачи', taskId);
     return;
   }
-
-  const url = `shortcuts://run-shortcut?name=${encodeURIComponent(commandName)}&input=text&text=${encodeURIComponent(
-    taskId
-  )}`;
+  const url = `shortcuts://run-shortcut?name=${encodeURIComponent(commandName)}&input=text&text=${encodeURIComponent(taskId)}`;
   console.log('Отправляю URL:', url);
 
   // Для touch-устройств (iOS, iPadOS)
@@ -56,10 +53,8 @@ document.querySelectorAll('.task').forEach((taskElem) => {
     return;
   }
 
-  // Читаем исходное состояние из data-атрибута.
-  // Если атрибут отсутствует или пуст, по умолчанию считаем его "не выполнено".
-  let state = taskElem.dataset.state && taskElem.dataset.state.trim() !== '' ? taskElem.dataset.state : 'не выполнено';
-
+  // Читаем исходное состояние из data-state или считаем "не выполнено"
+  let state = (taskElem.dataset.state && taskElem.dataset.state.trim()) || 'не выполнено';
   console.log(`Инициализация задачи ${taskId} со состоянием: "${state}"`);
 
   // ========================================================================
