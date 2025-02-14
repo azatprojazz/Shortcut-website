@@ -36,7 +36,7 @@ function sendThingsRequest(taskId, params) {
     document.body.appendChild(iframe);
     setTimeout(() => {
       document.body.removeChild(iframe);
-    }, 500);
+    }, 100);
   }
 }
 
@@ -154,7 +154,7 @@ document.querySelectorAll('.task').forEach((taskElem) => {
     holdTimer = setTimeout(() => {
       cancelTask();
       holdTimer = null;
-    }, 200);
+    }, 500);
   }
 
   // Функция: handleEnd
@@ -224,7 +224,7 @@ function sendMassCompleteRequest(taskIds) {
     document.body.appendChild(iframe);
     setTimeout(() => {
       document.body.removeChild(iframe);
-    }, 500);
+    }, 100);
   }
 }
 
