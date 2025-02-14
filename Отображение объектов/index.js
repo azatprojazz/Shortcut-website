@@ -54,7 +54,7 @@ document.querySelectorAll('.task').forEach((taskElem) => {
   }
 
   // Читаем исходное состояние из data-state или считаем "не выполнено"
-  let state = (taskElem.dataset.state && taskElem.dataset.state.trim()) || 'не выполнено';
+  let state = (taskElem.dataset.state && taskElem.dataset.state.trim()) || 'Не выполнено';
   console.log(`Инициализация задачи ${taskId} со состоянием: "${state}"`);
 
   // ========================================================================
@@ -71,9 +71,9 @@ document.querySelectorAll('.task').forEach((taskElem) => {
 
     // Добавляем нужный класс для визуального отображения.
     // Если хотите использовать стили по data-атрибуту, этот шаг можно опустить.
-    if (state === 'выполнено') {
+    if (state === 'Выполнено') {
       taskElem.classList.add('checked');
-    } else if (state === 'отменено') {
+    } else if (state === 'Отменено') {
       taskElem.classList.add('cancelled');
     } else {
       // Для "не выполнено" можно добавить отдельный класс, если потребуется
@@ -87,16 +87,16 @@ document.querySelectorAll('.task').forEach((taskElem) => {
   // Назначение: Переключает состояние задачи между "не выполнено" и "выполнено".
   // Если задача находилась в состоянии "отменено", сбрасываем её в "не выполнено".
   function toggleComplete() {
-    if (state === 'отменено') {
-      state = 'не выполнено';
+    if (state === 'Отменено') {
+      state = 'Не выполнено';
       updateUI();
       sendThingsRequest(taskId, { completed: false });
       console.log(`Задача ${taskId}: сброс отмены, новое состояние: "${state}"`);
       return;
     }
-    state = state === 'не выполнено' ? 'выполнено' : 'не выполнено';
+    state = state === 'Не выполнено' ? 'Выполнено' : 'Не выполнено';
     updateUI();
-    sendThingsRequest(taskId, { completed: state === 'выполнено' });
+    sendThingsRequest(taskId, { completed: state === 'Выполнено' });
     console.log(`Задача ${taskId}: переключение, новое состояние: "${state}"`);
   }
 
@@ -104,7 +104,7 @@ document.querySelectorAll('.task').forEach((taskElem) => {
   // Функция: cancelTask
   // Назначение: Устанавливает состояние задачи "отменено".
   function cancelTask() {
-    state = 'отменено';
+    state = 'Отменено';
     updateUI();
     sendThingsRequest(taskId, { canceled: true });
     console.log(`Задача ${taskId}: отменена`);
@@ -115,8 +115,8 @@ document.querySelectorAll('.task').forEach((taskElem) => {
   // Назначение: Принудительно переводит задачу в состояние "выполнено".
   // Параметр suppressRequest: если true, не отправляем запрос через sendThingsRequest.
   function forceCompleteTask(suppressRequest = false) {
-    if (state !== 'выполнено') {
-      state = 'выполнено';
+    if (state !== 'Выполнено') {
+      state = 'Выполнено';
       updateUI();
       if (!suppressRequest) {
         sendThingsRequest(taskId, { completed: true });
@@ -140,8 +140,8 @@ document.querySelectorAll('.task').forEach((taskElem) => {
     e.preventDefault();
     if (e.altKey) {
       // Если Alt зажат и задача уже в состоянии "отменено", сбрасываем её в "не выполнено"
-      if (state === 'отменено') {
-        state = 'не выполнено';
+      if (state === 'Отменено') {
+        state = 'Не выполнено';
         updateUI();
         sendThingsRequest(taskId, { completed: false });
         console.log(`Задача ${taskId}: Alt+нажатие — сброс отмены, новое состояние: "${state}"`);

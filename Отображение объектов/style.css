@@ -270,13 +270,13 @@
 }
 
 /* Состояние "не выполнено" */
-.checkbox[data-state="не выполнено"] {
+.checkbox[data-state="Не выполнено"] {
   border: 2px solid var(--color-checkbox);
   background-color: transparent;
 }
 
 /* Состояние "выполнено" — отображается галочка */
-.checkbox[data-state="выполнено"] {
+.checkbox[data-state="Выполнено"] {
   border-color: transparent;
   background-color: var(--color-checkbox_checked);
   animation: clickChecked 0.2s ease-out;
@@ -293,7 +293,7 @@
     transform: scale(1);
   }
 }
-.checkbox[data-state="выполнено"]::after {
+.checkbox[data-state="Выполнено"]::after {
   content: '';
   position: absolute;
   top: 8%;
@@ -319,7 +319,7 @@
 }
 
 /* Состояние "отменено" — эффект клика с крестиком */
-.checkbox[data-state='отменено'] {
+.checkbox[data-state='Отменено'] {
   border-color: transparent;
   background-color: var(--color-checkbox_cancel);
   animation: clickCancelled 0.2s ease-out;
@@ -338,8 +338,8 @@
 }
 
 /* Псевдоэлементы для отрисовки крестика в состоянии "отменено" */
-.checkbox[data-state='отменено']::before,
-.checkbox[data-state='отменено']::after {
+.checkbox[data-state='Отменено']::before,
+.checkbox[data-state='Отменено']::after {
   content: '';
   position: absolute;
   top: 50%;
@@ -350,7 +350,7 @@
 }
 
 /* Первая линия крестика */
-.checkbox[data-state='отменено']::before {
+.checkbox[data-state='Отменено']::before {
   width: 18px;
   height: 4px;
   transform: translate(-50%, -50%) rotate(45deg) scaleX(0);
@@ -358,7 +358,7 @@
 }
 
 /* Вторая линия крестика */
-.checkbox[data-state='отменено']::after {
+.checkbox[data-state='Отменено']::after {
   width: 18px;
   height: 4px;
   transform: translate(-50%, -50%) rotate(-45deg) scaleX(0);
