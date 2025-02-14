@@ -7,11 +7,11 @@
 
 .container {
   overflow: hidden;
+  max-width: 600px;
   margin: 10px auto;
   border: 1px solid var(--color-accent);
   border-radius: 8px;
   box-shadow: var(--box-shadow);
-  max-width: 600px;
   word-wrap: anywhere;
 }
 
@@ -270,7 +270,7 @@
 }
 
 /* Состояние "выполнено" — эффект клика с галочкой */
-.checkbox.checked {
+.checkbox[data-state='выполнено'] {
   border-color: transparent;
   background-color: var(--color-checkbox_checked);
   animation: clickChecked 0.2s ease-out;
@@ -288,7 +288,7 @@
   }
 }
 
-.checkbox.checked::after {
+.checkbox[data-state='выполнено']::after {
   content: '';
   position: absolute;
   top: 8%;
@@ -302,7 +302,6 @@
   opacity: 0;
 }
 
-
 @keyframes drawCheck {
   0% {
     transform: rotate(45deg) scale(0);
@@ -315,7 +314,7 @@
 }
 
 /* Состояние "отменено" — эффект клика с крестиком */
-.checkbox.cancelled {
+.checkbox[data-state='отменено'] {
   border-color: transparent;
   background-color: var(--color-checkbox_cancel);
   animation: clickCancelled 0.2s ease-out;
@@ -333,9 +332,9 @@
   }
 }
 
-/* Псевдоэлементы для отрисовки крестика */
-.checkbox.cancelled::before,
-.checkbox.cancelled::after {
+/* Псевдоэлементы для отрисовки крестика в состоянии "отменено" */
+.checkbox[data-state='отменено']::before,
+.checkbox[data-state='отменено']::after {
   content: '';
   position: absolute;
   top: 50%;
@@ -346,7 +345,7 @@
 }
 
 /* Первая линия крестика */
-.checkbox.cancelled::before {
+.checkbox[data-state='отменено']::before {
   width: 18px;
   height: 4px;
   transform: translate(-50%, -50%) rotate(45deg) scaleX(0);
@@ -354,13 +353,12 @@
 }
 
 /* Вторая линия крестика */
-.checkbox.cancelled::after {
+.checkbox[data-state='отменено']::after {
   width: 18px;
   height: 4px;
   transform: translate(-50%, -50%) rotate(-45deg) scaleX(0);
   animation: drawCross2 0.2s forwards 0.15s;
 }
-
 
 @keyframes drawCross1 {
   0% {
@@ -391,10 +389,11 @@
   display: flex;
   overflow: hidden; /* Скрываем все, что выходит за пределы кнопки */
   width: 100%;
+  max-width: 600px;
   padding: 10px;
   justify-content: center;
-  font-weight: bold;
   font-size: 1.2em;
+  font-weight: bold;
   border: 2px solid var(--color-accent);
   border-radius: 10px;
   background-color: var(--color-bg-button);

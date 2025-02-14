@@ -44,56 +44,80 @@ function sendThingsRequest(taskId, params) {
 }
 
 // ==========================================================================
-// Обработка отдельных задач
+// Обработка отдельных задач (чекбоксов) с использованием data-атрибута для состояния
 // Для каждого элемента с классом "task" (у которого должен быть уникальный data-task-id)
 // навешиваются обработчики событий для кликов, долгого нажатия и Alt+нажатия, а также определяется
 // метод forceCompleteTask, который принудительно переводит задачу в состояние "выполнено".
 document.querySelectorAll('.task').forEach((taskElem) => {
-  let taskId = taskElem.dataset.taskId;
+  // Получаем уникальный идентификатор задачи из data-task-id
+  const taskId = taskElem.dataset.taskId;
   if (!taskId) {
     console.error('Не найден data-task-id у элемента:', taskElem);
     return;
   }
 
-  // Возможные состояния задачи: "incomplete" (не выполнена), "checked" (выполнена), "cancelled" (отменена)
-  let state = 'incomplete';
-  let holdTimer = null;
+  // Определяем исходное состояние:
+  // Если data-state задан, то используем его, иначе по умолчанию "не выполнено"
+  let state = taskElem.dataset.state || 'не выполнено';
 
-  // Обновляет визуальное отображение задачи, добавляя соответствующие классы.
+  // ========================================================================
+  // Функция: updateUI
+  // Назначение: Обновляет визуальное отображение задачи на основе текущего состояния.
+  // Здесь мы:
+  //   1. Устанавливаем data-атрибут "data-state" у элемента.
+  //   2. (Опционально) Обновляем CSS-классы для применения стилей.
   function updateUI() {
-    taskElem.classList.remove('checked', 'cancelled');
-    if (state === 'checked') {
+    // Устанавливаем data-атрибут "data-state" для отражения текущего состояния
+    taskElem.dataset.state = state;
+
+    // Удаляем старые классы состояния, если они используются в стилях
+    taskElem.classList.remove('checked', 'cancelled', 'incomplete');
+
+    // Добавляем нужный класс для визуального отображения.
+    // Если хотите использовать стили по data-атрибуту, этот шаг можно опустить.
+    if (state === 'выполнено') {
       taskElem.classList.add('checked');
-    } else if (state === 'cancelled') {
+    } else if (state === 'отменено') {
       taskElem.classList.add('cancelled');
+    } else {
+      // Для "не выполнено" можно добавить отдельный класс, если потребуется
+      taskElem.classList.add('incomplete');
     }
   }
+  updateUI();
 
-  // Переключает состояние задачи между "incomplete" и "checked". Если задача отменена, сбрасывает её в "incomplete".
+  // ========================================================================
+  // Функция: toggleComplete
+  // Назначение: Переключает состояние задачи между "не выполнено" и "выполнено".
+  // Если задача находилась в состоянии "отменено", сбрасываем её в "не выполнено".
   function toggleComplete() {
-    if (state === 'cancelled') {
-      state = 'incomplete';
+    if (state === 'отменено') {
+      state = 'не выполнено';
       updateUI();
       sendThingsRequest(taskId, { completed: false });
       return;
     }
-    state = state === 'incomplete' ? 'checked' : 'incomplete';
+    state = state === 'не выполнено' ? 'выполнено' : 'не выполнено';
     updateUI();
-    sendThingsRequest(taskId, { completed: state === 'checked' });
+    sendThingsRequest(taskId, { completed: state === 'выполнено' });
   }
 
-  // Устанавливает состояние задачи "cancelled".
+  // ========================================================================
+  // Функция: cancelTask
+  // Назначение: Устанавливает состояние задачи "отменено".
   function cancelTask() {
-    state = 'cancelled';
+    state = 'отменено';
     updateUI();
     sendThingsRequest(taskId, { canceled: true });
   }
 
-  // Принудительное завершение задачи. Если задача ещё не выполнена, переводит её в "checked".
-  // Добавлен параметр suppressRequest, чтобы можно было обновить UI без отправки индивидуального запроса при массовом завершении.
+  // ========================================================================
+  // Функция: forceCompleteTask
+  // Назначение: Принудительно переводит задачу в состояние "выполнено".
+  // Параметр suppressRequest: если true, не отправляем запрос через sendThingsRequest.
   function forceCompleteTask(suppressRequest = false) {
-    if (state !== 'checked') {
-      state = 'checked';
+    if (state !== 'выполнено') {
+      state = 'выполнено';
       updateUI();
       if (!suppressRequest) {
         sendThingsRequest(taskId, { completed: true });
@@ -101,18 +125,23 @@ document.querySelectorAll('.task').forEach((taskElem) => {
     }
   }
 
-  // Делаем метод forceCompleteTask доступным из вне через сам DOM-элемент,
-  // чтобы его можно было вызывать при массовом завершении.
+  // Делаем метод forceCompleteTask доступным извне через DOM-элемент
   taskElem.forceCompleteTask = forceCompleteTask;
 
-  // Обработчик начала нажатия (mousedown / touchstart).
-  // Если нажата клавиша Alt, сразу выполняется логика отмены.
-  // Иначе запускается таймер для определения долгого нажатия.
+  // ========================================================================
+  // Обработка событий для распознавания клика, долгого нажатия и нажатия с Alt
+  let holdTimer = null;
+
+  // Функция: handleStart
+  // Назначение: Обрабатывает начало нажатия (mousedown / touchstart).
+  // Если нажата клавиша Alt — сразу выполняем логику отмены/сброса отмены.
+  // Иначе запускаем таймер для определения долгого нажатия.
   function handleStart(e) {
     e.preventDefault();
     if (e.altKey) {
-      if (state === 'cancelled') {
-        state = 'incomplete';
+      // Если Alt зажат и задача уже в состоянии "отменено", сбрасываем её в "не выполнено"
+      if (state === 'отменено') {
+        state = 'не выполнено';
         updateUI();
         sendThingsRequest(taskId, { completed: false });
       } else {
@@ -120,14 +149,16 @@ document.querySelectorAll('.task').forEach((taskElem) => {
       }
       return;
     }
+    // Запускаем таймер для определения долгого нажатия (200 мс)
     holdTimer = setTimeout(() => {
       cancelTask();
       holdTimer = null;
-    }, 200); // 200 мс для определения long press
+    }, 200);
   }
 
-  // Обработчик окончания нажатия (mouseup / touchend).
-  // Если таймер активен, значит это обычный клик – переключаем состояние.
+  // Функция: handleEnd
+  // Назначение: Обрабатывает окончание нажатия (mouseup / touchend).
+  // Если таймер активен — считаем, что это обычный клик и переключаем состояние.
   function handleEnd(e) {
     e.preventDefault();
     if (holdTimer) {
@@ -137,7 +168,8 @@ document.querySelectorAll('.task').forEach((taskElem) => {
     }
   }
 
-  // Обработчик отмены нажатия (mouseleave / touchcancel) – сбрасывает таймер.
+  // Функция: handleCancel
+  // Назначение: Сбрасывает таймер, если нажатие было прервано (mouseleave / touchcancel).
   function handleCancel(e) {
     if (holdTimer) {
       clearTimeout(holdTimer);
@@ -145,7 +177,7 @@ document.querySelectorAll('.task').forEach((taskElem) => {
     }
   }
 
-  // Навешиваем обработчики событий для мыши и touch.
+  // Навешиваем обработчики событий для мыши и сенсорных устройств.
   taskElem.addEventListener('mousedown', handleStart);
   taskElem.addEventListener('mouseup', handleEnd);
   taskElem.addEventListener('mouseleave', handleCancel);
@@ -197,9 +229,11 @@ function sendMassCompleteRequest(taskIds) {
 
 // ==========================================================================
 // Обработчик для кнопки "Завершить все задачи"
-// При клике на кнопку собираем все элементы с классом "task", извлекаем их уникальные data-task-id,
-// формируем из них массив и вызываем sendMassCompleteRequest, который отправляет один общий запрос.
-// Также обновляем UI для каждой задачи, помечая их как завершённые.
+// При клике на кнопку:
+//   1. Собираются все элементы с классом "task".
+//   2. Извлекаются их уникальные data-task-id.
+//   3. Отправляется один запрос для массового завершения.
+//   4. Обновляется UI для каждой задачи (переводятся в состояние "выполнено").
 document.getElementById('complete-all').addEventListener('click', () => {
   // Находим все элементы задач.
   const taskElements = document.querySelectorAll('.task');
@@ -215,7 +249,7 @@ document.getElementById('complete-all').addEventListener('click', () => {
   // Если найдены задачи, отправляем их все одним запросом.
   if (taskIds.length > 0) {
     sendMassCompleteRequest(taskIds);
-    // Обновляем UI для каждой задачи, помечая их как завершённые, без отправки индивидуальных запросов.
+    // Обновляем UI для каждой задачи, переводя их в состояние "выполнено", без отправки индивидуальных запросов.
     taskElements.forEach((taskElem) => {
       if (typeof taskElem.forceCompleteTask === 'function') {
         taskElem.forceCompleteTask(true);
