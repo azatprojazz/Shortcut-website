@@ -56,21 +56,22 @@ document.querySelectorAll('.task').forEach((taskElem) => {
     return;
   }
 
-  // Определяем исходное состояние:
-  // Если data-state задан, то используем его, иначе по умолчанию "не выполнено"
-  let state = taskElem.dataset.state || 'не выполнено';
+  // Читаем исходное состояние из data-атрибута.
+  // Если атрибут отсутствует или пуст, по умолчанию считаем его "не выполнено".
+  let state = taskElem.dataset.state && taskElem.dataset.state.trim() !== '' ? taskElem.dataset.state : 'не выполнено';
+
+  console.log(`Инициализация задачи ${taskId} со состоянием: "${state}"`);
 
   // ========================================================================
   // Функция: updateUI
   // Назначение: Обновляет визуальное отображение задачи на основе текущего состояния.
-  // Здесь мы:
-  //   1. Устанавливаем data-атрибут "data-state" у элемента.
-  //   2. (Опционально) Обновляем CSS-классы для применения стилей.
+  //   1. Устанавливает data-атрибут "data-state" у элемента.
+  //   2. Обновляет CSS-классы для применения стилей.
   function updateUI() {
-    // Устанавливаем data-атрибут "data-state" для отражения текущего состояния
+    // Сохраняем текущее состояние в data-атрибут
     taskElem.dataset.state = state;
 
-    // Удаляем старые классы состояния, если они используются в стилях
+    // Удаляем старые классы состояния (если они были добавлены ранее)
     taskElem.classList.remove('checked', 'cancelled', 'incomplete');
 
     // Добавляем нужный класс для визуального отображения.
@@ -95,11 +96,13 @@ document.querySelectorAll('.task').forEach((taskElem) => {
       state = 'не выполнено';
       updateUI();
       sendThingsRequest(taskId, { completed: false });
+      console.log(`Задача ${taskId}: сброс отмены, новое состояние: "${state}"`);
       return;
     }
     state = state === 'не выполнено' ? 'выполнено' : 'не выполнено';
     updateUI();
     sendThingsRequest(taskId, { completed: state === 'выполнено' });
+    console.log(`Задача ${taskId}: переключение, новое состояние: "${state}"`);
   }
 
   // ========================================================================
@@ -109,6 +112,7 @@ document.querySelectorAll('.task').forEach((taskElem) => {
     state = 'отменено';
     updateUI();
     sendThingsRequest(taskId, { canceled: true });
+    console.log(`Задача ${taskId}: отменена`);
   }
 
   // ========================================================================
@@ -122,6 +126,7 @@ document.querySelectorAll('.task').forEach((taskElem) => {
       if (!suppressRequest) {
         sendThingsRequest(taskId, { completed: true });
       }
+      console.log(`Задача ${taskId}: принудительно выполнена`);
     }
   }
 
@@ -144,6 +149,7 @@ document.querySelectorAll('.task').forEach((taskElem) => {
         state = 'не выполнено';
         updateUI();
         sendThingsRequest(taskId, { completed: false });
+        console.log(`Задача ${taskId}: Alt+нажатие — сброс отмены, новое состояние: "${state}"`);
       } else {
         cancelTask();
       }
