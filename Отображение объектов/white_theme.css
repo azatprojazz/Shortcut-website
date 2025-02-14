@@ -22,7 +22,6 @@
     --color-bg-tags: var(--color-green);
     --color-bg-date: var(--color-orange);
     --color-bg-deadline: var(--color-red);
-    --color-bg-when: var(--color-gray-2);
     --color-bg-quote: var(--color-red-2);
     --color-bg-blockquote: var(--color-red-2);
     --color-bg-button: var(--color-white);
@@ -34,7 +33,6 @@
     --color-text-tags: var(--color-white);
     --color-text-date: var(--color-white);
     --color-text-deadline: var(--color-white);
-    --color-text-when: var(--color-gray-2);
     --color-text-link: var(--color-blue-2);
     --color-text-link_hover: var(--color-blue-3);
     --color-text-link_visited: var(--color-blue-4);

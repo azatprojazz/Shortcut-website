@@ -11,6 +11,7 @@
   border: 1px solid var(--color-accent);
   border-radius: 8px;
   box-shadow: var(--box-shadow);
+  max-width: 600px;
   word-wrap: anywhere;
 }
 
@@ -214,7 +215,7 @@
 .footer {
   display: grid;
   padding: 5px 6px;
-  grid-template-columns: min-content max-content max-content max-content;
+  grid-template-columns: min-content max-content max-content;
 }
 
 .section,
@@ -226,8 +227,7 @@
 
 .tags,
 .date,
-.deadline,
-.when {
+.deadline {
   display: flex;
   padding: 0 4px 1px;
   align-self: center;
@@ -253,12 +253,6 @@
   color: var(--color-text-deadline);
 }
 
-.when {
-  padding-bottom: 1px;
-  grid-area: 1/4/1/4;
-  box-shadow: inset 0 0 0 2px var(--color-bg-when);
-  color: var(--color-text-when);
-}
 /* Базовые стили для чекбокса */
 .checkbox {
   position: relative;
@@ -400,7 +394,7 @@
   padding: 10px;
   justify-content: center;
   font-weight: bold;
-  font-size: 1.3em;
+  font-size: 1.2em;
   border: 2px solid var(--color-accent);
   border-radius: 10px;
   background-color: var(--color-bg-button);
