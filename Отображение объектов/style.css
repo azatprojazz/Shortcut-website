@@ -269,8 +269,14 @@
   border: 2px solid var(--color-checkbox_hover);
 }
 
-/* Состояние "выполнено" — эффект клика с галочкой */
-.checkbox[data-state='выполнено'] {
+/* Состояние "не выполнено" */
+.checkbox[data-state="не выполнено"] {
+  border: 2px solid var(--color-checkbox);
+  background-color: transparent;
+}
+
+/* Состояние "выполнено" — отображается галочка */
+.checkbox[data-state="выполнено"] {
   border-color: transparent;
   background-color: var(--color-checkbox_checked);
   animation: clickChecked 0.2s ease-out;
@@ -287,8 +293,7 @@
     transform: scale(1);
   }
 }
-
-.checkbox[data-state='выполнено']::after {
+.checkbox[data-state="выполнено"]::after {
   content: '';
   position: absolute;
   top: 8%;
