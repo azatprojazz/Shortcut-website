@@ -1,33 +1,3 @@
-document.addEventListener('DOMContentLoaded', function () {
-  // ==========================================================================
-  // Функции для обновления href ссылок (обрабатываются все элементы с классом .link)
-  // ==========================================================================
-  function getOriginalUrl(link) {
-    return link.getAttribute('data-original-url') || link.href;
-  }
-
-  function isMobile() {
-    return 'ontouchstart' in window || navigator.maxTouchPoints > 0 || /Mobi/.test(navigator.userAgent);
-  }
-
-  function updateLinks() {
-    // Выбираем все ссылки с классом .link
-    const links = document.querySelectorAll('.link');
-    links.forEach((link) => {
-      const originalUrl = getOriginalUrl(link);
-      if (isMobile()) {
-        // Если устройство мобильное – формируем URL для вызова шортката
-        link.href = `shortcuts://run-shortcut?name=Links&input=text&text=${encodeURIComponent(originalUrl)}`;
-      } else {
-        // На десктопе оставляем оригинальный URL
-        link.href = originalUrl;
-      }
-    });
-  }
-
-  updateLinks();
-
-
 // ==========================================================================
 // Функция: sendThingsRequest
 // Назначение: Отправляет запрос через схему Shortcuts для обновления состояния задачи.
@@ -254,5 +224,4 @@ document.getElementById('complete-all').addEventListener('click', () => {
   } else {
     console.log('Нет задач для завершения.');
   }
-  });
 });
