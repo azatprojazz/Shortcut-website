@@ -17,8 +17,9 @@ function sendThingsRequest(taskId, params) {
     console.error('Не указаны параметры состояния для задачи', taskId);
     return;
   }
-  const url = `shortcuts://run-shortcut?name=${encodeURIComponent(commandName)}&input=text&text=${encodeURIComponent(taskId)}`;
-  console.log('Отправляю URL:', url);
+  const url = `shortcuts://run-shortcut?name=${encodeURIComponent(commandName)}&input=text&text=${encodeURIComponent(
+    taskId
+  )}`;
 
   // Для touch-устройств (iOS, iPadOS)
   if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
@@ -36,7 +37,7 @@ function sendThingsRequest(taskId, params) {
     document.body.appendChild(iframe);
     setTimeout(() => {
       document.body.removeChild(iframe);
-    }, 100);
+    }, 500);
   }
 }
 
@@ -44,7 +45,7 @@ function sendThingsRequest(taskId, params) {
 // Обработка отдельных задач (чекбоксов) с использованием data-атрибута для состояния
 // Для каждого элемента с классом "task" (у которого должен быть уникальный data-task-id)
 // навешиваются обработчики событий для кликов, долгого нажатия и Alt+нажатия, а также определяется
-// метод forceCompleteTask, который принудительно переводит задачу в состояние "выполнено".
+// метод forceCompleteTask, который принудительно переводит задачу в состояние "Выполнено".
 document.querySelectorAll('.task').forEach((taskElem) => {
   // Получаем уникальный идентификатор задачи из data-task-id
   const taskId = taskElem.dataset.taskId;
@@ -53,24 +54,26 @@ document.querySelectorAll('.task').forEach((taskElem) => {
     return;
   }
 
-  // Читаем исходное состояние из data-state или считаем "не выполнено"
-  let state = (taskElem.dataset.state && taskElem.dataset.state.trim()) || 'Не выполнено';
-  console.log(`Инициализация задачи ${taskId} со состоянием: "${state}"`);
+  // Сначала пытаемся получить сохранённое состояние из localStorage,
+  // если его нет, используем значение из data-state (если задано) или по умолчанию "Не выполнено"
+  let storedState = localStorage.getItem('taskState_' + taskId);
+  let state = storedState || (taskElem.dataset.state && taskElem.dataset.state.trim()) || 'Не выполнено';
 
   // ========================================================================
   // Функция: updateUI
   // Назначение: Обновляет визуальное отображение задачи на основе текущего состояния.
   //   1. Устанавливает data-атрибут "data-state" у элемента.
   //   2. Обновляет CSS-классы для применения стилей.
+  //   3. Сохраняет состояние в localStorage.
   function updateUI() {
-    // Сохраняем текущее состояние в data-атрибут
     taskElem.dataset.state = state;
+    localStorage.setItem('taskState_' + taskId, state);
 
     // Удаляем старые классы состояния (если они были добавлены ранее)
     taskElem.classList.remove('checked', 'cancelled', 'incomplete');
 
     // Добавляем нужный класс для визуального отображения.
-    // Если хотите использовать стили по data-атрибуту, этот шаг можно опустить.
+    // Если стили по data-атрибуту достаточно, этот шаг можно опустить.
     if (state === 'Выполнено') {
       taskElem.classList.add('checked');
     } else if (state === 'Отменено') {
@@ -84,35 +87,32 @@ document.querySelectorAll('.task').forEach((taskElem) => {
 
   // ========================================================================
   // Функция: toggleComplete
-  // Назначение: Переключает состояние задачи между "не выполнено" и "выполнено".
-  // Если задача находилась в состоянии "отменено", сбрасываем её в "не выполнено".
+  // Назначение: Переключает состояние задачи между "Не выполнено" и "Выполнено".
+  // Если задача находилась в состоянии "Отменено", сбрасываем её в "Не выполнено".
   function toggleComplete() {
     if (state === 'Отменено') {
       state = 'Не выполнено';
       updateUI();
       sendThingsRequest(taskId, { completed: false });
-      console.log(`Задача ${taskId}: сброс отмены, новое состояние: "${state}"`);
       return;
     }
     state = state === 'Не выполнено' ? 'Выполнено' : 'Не выполнено';
     updateUI();
     sendThingsRequest(taskId, { completed: state === 'Выполнено' });
-    console.log(`Задача ${taskId}: переключение, новое состояние: "${state}"`);
   }
 
   // ========================================================================
   // Функция: cancelTask
-  // Назначение: Устанавливает состояние задачи "отменено".
+  // Назначение: Устанавливает состояние задачи "Отменено".
   function cancelTask() {
     state = 'Отменено';
     updateUI();
     sendThingsRequest(taskId, { canceled: true });
-    console.log(`Задача ${taskId}: отменена`);
   }
 
   // ========================================================================
   // Функция: forceCompleteTask
-  // Назначение: Принудительно переводит задачу в состояние "выполнено".
+  // Назначение: Принудительно переводит задачу в состояние "Выполнено".
   // Параметр suppressRequest: если true, не отправляем запрос через sendThingsRequest.
   function forceCompleteTask(suppressRequest = false) {
     if (state !== 'Выполнено') {
@@ -121,7 +121,6 @@ document.querySelectorAll('.task').forEach((taskElem) => {
       if (!suppressRequest) {
         sendThingsRequest(taskId, { completed: true });
       }
-      console.log(`Задача ${taskId}: принудительно выполнена`);
     }
   }
 
@@ -144,7 +143,6 @@ document.querySelectorAll('.task').forEach((taskElem) => {
         state = 'Не выполнено';
         updateUI();
         sendThingsRequest(taskId, { completed: false });
-        console.log(`Задача ${taskId}: Alt+нажатие — сброс отмены, новое состояние: "${state}"`);
       } else {
         cancelTask();
       }
@@ -154,7 +152,7 @@ document.querySelectorAll('.task').forEach((taskElem) => {
     holdTimer = setTimeout(() => {
       cancelTask();
       holdTimer = null;
-    }, 500);
+    }, 200);
   }
 
   // Функция: handleEnd
@@ -207,7 +205,6 @@ function sendMassCompleteRequest(taskIds) {
   const url = `shortcuts://run-shortcut?name=${encodeURIComponent(shortcutName)}&input=text&text=${encodeURIComponent(
     joinedIds
   )}`;
-  console.log('Отправляю массовый запрос с URL:', url);
 
   // Аналогично, открываем ссылку для мобильных и десктопных устройств.
   if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
@@ -224,7 +221,7 @@ function sendMassCompleteRequest(taskIds) {
     document.body.appendChild(iframe);
     setTimeout(() => {
       document.body.removeChild(iframe);
-    }, 100);
+    }, 500);
   }
 }
 
@@ -234,7 +231,7 @@ function sendMassCompleteRequest(taskIds) {
 //   1. Собираются все элементы с классом "task".
 //   2. Извлекаются их уникальные data-task-id.
 //   3. Отправляется один запрос для массового завершения.
-//   4. Обновляется UI для каждой задачи (переводятся в состояние "выполнено").
+//   4. Обновляется UI для каждой задачи (переводятся в состояние "Выполнено").
 document.getElementById('complete-all').addEventListener('click', () => {
   // Находим все элементы задач.
   const taskElements = document.querySelectorAll('.task');
@@ -256,7 +253,5 @@ document.getElementById('complete-all').addEventListener('click', () => {
         taskElem.forceCompleteTask(true);
       }
     });
-  } else {
-    console.log('Нет задач для завершения.');
   }
 });
