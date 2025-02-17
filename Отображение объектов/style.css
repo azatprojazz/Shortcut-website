@@ -7,7 +7,7 @@
 
 .container {
   overflow: hidden;
-  max-width: 600px;
+  max-width: 685px;
   margin: 10px auto;
   border: 1px solid var(--color-accent);
   border-radius: 8px;
@@ -270,13 +270,13 @@
 }
 
 /* Состояние "не выполнено" */
-.checkbox[data-state="Не выполнено"] {
+.checkbox[data-state='Не выполнено'] {
   border: 2px solid var(--color-checkbox);
   background-color: transparent;
 }
 
 /* Состояние "выполнено" — отображается галочка */
-.checkbox[data-state="Выполнено"] {
+.checkbox[data-state='Выполнено'] {
   border-color: transparent;
   background-color: var(--color-checkbox_checked);
   animation: clickChecked 0.2s ease-out;
@@ -293,7 +293,7 @@
     transform: scale(1);
   }
 }
-.checkbox[data-state="Выполнено"]::after {
+.checkbox[data-state='Выполнено']::after {
   content: '';
   position: absolute;
   top: 8%;
@@ -394,7 +394,7 @@
   display: flex;
   overflow: hidden; /* Скрываем все, что выходит за пределы кнопки */
   width: 100%;
-  max-width: 600px;
+  max-width: 685px;
   padding: 10px;
   justify-content: center;
   font-size: 1.2em;
