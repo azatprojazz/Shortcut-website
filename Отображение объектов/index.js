@@ -1,3 +1,19 @@
+// Безопасные функции для работы с localStorage
+function safeLocalStorageGet(key) {
+  try {
+    return localStorage.getItem(key);
+  } catch (e) {
+    return null;
+  }
+}
+function safeLocalStorageSet(key, value) {
+  try {
+    localStorage.setItem(key, value);
+  } catch (e) {
+    // Если localStorage недоступен, ничего не делаем
+  }
+}
+
 // ==========================================================================
 // Функция: sendThingsRequest
 // Назначение: Отправляет запрос через схему Shortcuts для обновления состояния задачи.
@@ -42,7 +58,7 @@ function sendThingsRequest(taskId, params) {
 }
 
 // ==========================================================================
-// Обработка отдельных задач (чекбоксов) с использованием data-атрибута для состояния
+// Обработка отдельных задач (чекбоксов) с использованием data-атрибута для состояния.
 // Для каждого элемента с классом "task" (у которого должен быть уникальный data-task-id)
 // навешиваются обработчики событий для кликов, долгого нажатия и Alt+нажатия, а также определяется
 // метод forceCompleteTask, который принудительно переводит задачу в состояние "Выполнено".
@@ -54,9 +70,8 @@ document.querySelectorAll('.task').forEach((taskElem) => {
     return;
   }
 
-  // Сначала пытаемся получить сохранённое состояние из localStorage,
-  // если его нет, используем значение из data-state (если задано) или по умолчанию "Не выполнено"
-  let storedState = localStorage.getItem('taskState_' + taskId);
+  // Получаем сохранённое состояние из localStorage, если оно есть, иначе используем data-state или значение по умолчанию "Не выполнено"
+  let storedState = safeLocalStorageGet('taskState_' + taskId);
   let state = storedState || (taskElem.dataset.state && taskElem.dataset.state.trim()) || 'Не выполнено';
 
   // ========================================================================
@@ -67,7 +82,7 @@ document.querySelectorAll('.task').forEach((taskElem) => {
   //   3. Сохраняет состояние в localStorage.
   function updateUI() {
     taskElem.dataset.state = state;
-    localStorage.setItem('taskState_' + taskId, state);
+    safeLocalStorageSet('taskState_' + taskId, state);
 
     // Удаляем старые классы состояния (если они были добавлены ранее)
     taskElem.classList.remove('checked', 'cancelled', 'incomplete');
@@ -87,8 +102,8 @@ document.querySelectorAll('.task').forEach((taskElem) => {
 
   // ========================================================================
   // Функция: toggleComplete
-  // Назначение: Переключает состояние задачи между "Не выполнено" и "Выполнено".
-  // Если задача находилась в состоянии "Отменено", сбрасываем её в "Не выполнено".
+  // Переключает состояние задачи между "Не выполнено" и "Выполнено".
+  // Если задача в состоянии "Отменено", сбрасывает её в "Не выполнено".
   function toggleComplete() {
     if (state === 'Отменено') {
       state = 'Не выполнено';
@@ -103,7 +118,7 @@ document.querySelectorAll('.task').forEach((taskElem) => {
 
   // ========================================================================
   // Функция: cancelTask
-  // Назначение: Устанавливает состояние задачи "Отменено".
+  // Устанавливает состояние задачи "Отменено".
   function cancelTask() {
     state = 'Отменено';
     updateUI();
@@ -112,8 +127,8 @@ document.querySelectorAll('.task').forEach((taskElem) => {
 
   // ========================================================================
   // Функция: forceCompleteTask
-  // Назначение: Принудительно переводит задачу в состояние "Выполнено".
-  // Параметр suppressRequest: если true, не отправляем запрос через sendThingsRequest.
+  // Принудительно переводит задачу в состояние "Выполнено".
+  // Параметр suppressRequest: если true, запрос через sendThingsRequest не отправляется.
   function forceCompleteTask(suppressRequest = false) {
     if (state !== 'Выполнено') {
       state = 'Выполнено';
@@ -180,9 +195,9 @@ document.querySelectorAll('.task').forEach((taskElem) => {
   taskElem.addEventListener('mousedown', handleStart);
   taskElem.addEventListener('mouseup', handleEnd);
   taskElem.addEventListener('mouseleave', handleCancel);
-  taskElem.addEventListener('touchstart', handleStart);
-  taskElem.addEventListener('touchend', handleEnd);
-  taskElem.addEventListener('touchcancel', handleCancel);
+  taskElem.addEventListener('touchstart', handleStart, { passive: false });
+  taskElem.addEventListener('touchend', handleEnd, { passive: false });
+  taskElem.addEventListener('touchcancel', handleCancel, { passive: false });
 });
 
 // ==========================================================================
