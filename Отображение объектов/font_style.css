@@ -1,0 +1,41 @@
+:root {
+  /* Font size */
+  --text-weight-xl: bold;
+  --text-weight-l: 600;
+  --text-weight-m: 500;
+  --text-weight-s: 400;
+
+  --text-xxl: 1.5rem;
+  --text-xl: 1.4rem;
+  --text-l: 1.2rem;
+  --text-m: 1.1rem;
+  --text-s: 1rem;
+  --text-xs: 0.9rem;
+  --text-xxs: 0.8rem;
+  --text-xxxs: 0.7rem;
+  --text-zero: 0;
+
+  --fz-page: var(--text-l);
+  --fw-page: var(--text-weight-s);
+  --fz-title: var(--text-zero);
+  --fz-title-bold: var(--text-m);
+  --fw-title-bold: var(--text-weight-xl);
+  --fz-link: var(--text-m);
+  --fw-link: var(--text-weight-l);
+  --fz-link-things: var(--text-l);
+  --fw-link-things: var(--text-weight-l);
+  --fz-list-item-number: var(--text-xs);
+  --fz-list-item-text: var(--text-m);
+  --fw-highlight: var(--text-weight-m);
+  --fw-cancel: var(--text-weight-m);
+  --fz-blockquote--quote: var(--text-xs);
+  --fw-blockquote--quote: var(--text-weight-xl);
+  --fz-all-rules: var(--text-m);
+  --fw-all-rules: var(--text-weight-l);
+  --fw-bold: var(--text-weight-xl);
+  --fw-italic: var(--text-weight-l);
+  --fz-tags--date--deadline: var(--text-xs);
+  --fw-tags--date--deadline: var(--text-weight-xl);
+  --fz-complete-all: var(--text-xxl);
+  --fw-complete-all: var(--text-weight-xl);
+}

@@ -1,150 +1,19 @@
-/* Базовый сброс */
 * {
-  margin: 0;
-  padding: 0;
-  border: 0;
-}
-
-/* Устанавливаем единый box-sizing для всех элементов */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-/* Убираем стандартный outline при фокусе и активном состоянии */
-:focus,
-:active {
-  outline: none;
-}
-
-/* Семантические элементы как блочные */
-nav,
-footer,
-header,
-aside {
-  display: block;
-}
-
-/* Настройки для html и body */
-html,
-body {
-  width: 100%;
-  height: 100%;
-  font-size: 1.1rem;
-  line-height: 1;
-     -moz-text-size-adjust: 100%;
-      -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-}
-
-/* Сброс стилизации для ссылок */
-a,
-a:visited,
-a:hover {
-  text-decoration: none;
-}
-
-/* Дополнительная настройка для ссылок без классов */
-a:not([class]) {
-  text-decoration-skip-ink: auto;
-}
-
-/* Наследуем шрифты для формовых элементов */
-input,
-button,
-textarea,
-select {
-  font: inherit;
-}
-input::-ms-clear {
-  display: none;
-}
-button {
-  cursor: pointer;
-}
-button::-moz-focus-inner {
-  padding: 0;
-  border: 0;
-}
-
-/* Сброс для заголовков и текстовых элементов */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-size: inherit;
-  font-weight: inherit;
-}
-i,
-cite,
-em,
-var,
-dfn,
-address {
-  font-style: normal;
-}
-b,
-strong,
-th {
-  font-weight: normal;
-}
-
-/* Сброс для списков */
-ul li {
-  list-style: none;
-}
-ul[class],
-ol[class] {
-  padding: 0;
-  list-style: none;
-}
-
-/* Сброс для изображений и их оптимизация */
-img {
-  display: block;
-  max-width: 100%;
-}
-
-/* Отступ между элементами внутри article */
-article
-> *
-+ * {
-  margin-top: 1em;
-}
-
-/* Основные настройки для body */
-body {
-  min-height: 100vh;
-  line-height: 1.4;
-  text-rendering: optimizeSpeed;
-
-  scroll-behavior: smooth;
-}
-
-/* Отключаем анимации и переходы для пользователей, предпочитающих минимум движухи */
-@media (prefers-reduced-motion: reduce) {
-  * {
-    transition-duration: 0.01ms;
-    animation-duration: 0.01ms;
-    animation-iteration-count: 1;
-
-    scroll-behavior: auto;
-  }
+  scrollbar-width: none;
 }
 
 .page {
+  box-sizing: border-box;
   font-family: 'Avenir Next';
+  font-size: var(--fz-page);
+  font-weight: var(--fw-page);
   background-color: var(--color-bg);
   color: var(--color-text);
 }
 
 .container {
   overflow: hidden;
-  width: 710px;
-  max-width: 98%;
+  max-width: 710px;
   margin: 10px auto;
   border: 1px solid var(--color-accent);
   border-radius: 8px;
@@ -153,36 +22,33 @@ body {
 }
 
 .margins {
-  display: block;
-  margin: 0.3em;
+  height: 0.7em;
 }
 
 .header {
-  padding: 5px 6px 4px;
-  border-bottom: 1px solid var(--color-accent);
-  hyphens: auto;
   /* word-break: break-all; */
-
   overflow-wrap: break-word;
-}
-
-.main {
   padding: 4px 6px;
   border-bottom: 1px solid var(--color-accent);
   hyphens: auto;
-  /* word-break: break-all; */
+}
 
+.main {
+  /* word-break: break-all; */
   overflow-wrap: break-word;
+  padding: 4px 6px;
+  border-bottom: 1px solid var(--color-accent);
+  hyphens: auto;
 }
 
 .title-bold {
-  font-size: 1.1rem;
-  font-weight: bold;
+  font-size: var(--fz-title-bold);
+  font-weight: var(--text-weight-xl);
 }
 
 .link {
-  font-size: 1rem;
-  font-weight: 600;
+  font-size: var(--fz-link);
+  font-weight: var(--fw-link);
   color: var(--color-text-link);
   text-decoration: none;
 }
@@ -190,6 +56,7 @@ body {
 .title {
   margin: 0;
   padding: 0;
+  font-size: var(--fz-title);
   line-height: 1.2;
 }
 
@@ -206,8 +73,8 @@ body {
 }
 
 .link__things {
-  font-size: 1.1rem;
-  font-weight: 600;
+  font-size: var(--fz-link-things);
+  font-weight: var(--fw-link-things);
   color: var(--color-text);
 }
 
@@ -232,12 +99,13 @@ body {
 
 .list-item__number {
   grid-area: auto / 1;
-  font-size: 0.9rem;
+  font-size: var(--fz-list-item-number);
   color: var(--color-check-list);
 }
 
 .list-item__text {
   grid-area: auto / 2;
+  font-size: var(--fz-list-item-text);
 }
 
 .list-item__ul {
@@ -295,7 +163,6 @@ body {
 .list-item_cancel::before {
   content: '❌';
   margin-right: 5px;
-  grid-area: 1 / 1;
 }
 
 .citation {
@@ -306,13 +173,13 @@ body {
 .highlight {
   width: fit-content;
   padding: 0 3px;
-  font-weight: 500;
+  font-weight: var(--fw-highlight);
   border-radius: 6px;
   background-color: var(--color-highlight);
 }
 
 .cancel {
-  font-weight: 500;
+  font-weight: var(--fw-cancel);
   text-decoration: line-through;
 }
 
@@ -320,7 +187,6 @@ body {
   width: fit-content;
   margin: 0;
   padding: 3px 5px;
-  font-weight: 600;
   border-radius: 4px;
   background-color: var(--color-bg-quote);
   color: var(--color-text);
@@ -330,7 +196,6 @@ body {
   overflow-x: auto;
   margin: 0;
   padding: 8px 10px;
-  font-weight: 600;
   border-radius: 4px;
   background-color: var(--color-bg-blockquote);
   color: var(--color-text);
@@ -338,25 +203,29 @@ body {
 }
 
 .citation,
+.list-item_cancel,
+.list-item_done,
+.list-item_check,
 .bold,
-.list-item__ol,
 .italic,
 .cancel,
 .highlight {
-  font-size: 1rem;
+  font-size: var(--fz-all-rules);
+  font-weight: var(--fw-all-rules);
 }
 
 .blockquote,
 .quote {
-  font-size: 0.9rem;
+  font-size: var(--fz-blockquote--quote);
+  font-weight: var(--fw-blockquote--quote);
 }
 
 .bold {
-  font-weight: bold;
+  font-weight: var(--fw-bold);
 }
 
 .italic {
-  font-weight: 600;
+  font-weight: var(--fw-italic);
   font-style: italic;
 }
 
@@ -391,8 +260,8 @@ body {
   display: flex;
   padding: 0 4px 1px;
   align-self: center;
-  font-size: 0.7rem;
-  font-weight: bold;
+  font-size: var(--fz-tags--date--deadline);
+  font-weight: var(--fw-tags--date--deadline);
   border-radius: 8px;
 }
 
@@ -557,8 +426,8 @@ body {
   max-width: 710px;
   padding: 10px;
   justify-content: center;
-  font-size: 1.6rem;
-  font-weight: bold;
+  font-size: var(--fz-complete-all);
+  font-weight: var(--fw-complete-all);
   border: 2px solid var(--color-accent);
   border-radius: 10px;
   background-color: var(--color-bg-button);
@@ -566,9 +435,7 @@ body {
   color: var(--color-text-button);
   cursor: pointer;
   /* Плавные переходы для трансформаций и смены фона/цвета */
-  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1),
-  background-color 0.3s ease,
-  color 0.3s ease;
+  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Эффект при наведении на кнопку */
@@ -585,8 +452,8 @@ body {
   content: '';
   position: absolute;
   top: 0;
-  left: -75%;      /* Изначально располагается за левой границей кнопки */
-  width: 50%;      /* Ширина эффекта */
+  left: -75%; /* Изначально располагается за левой границей кнопки */
+  width: 50%; /* Ширина эффекта */
   height: 100%;
   /* Полупрозрачный белый цвет для имитации блеска */
   background: rgba(255, 255, 255, 0.2);

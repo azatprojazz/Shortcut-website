@@ -1,3 +1,5 @@
+@import url('./font_style.css');
+
    .page__theme-dark {
     /* Colors */
     --color-black: black;
