@@ -1,5 +1,5 @@
 .page__theme-white {
-  --box-shadow: 1px 3px 4px var(--acent-color);
+  --box-shadow: 0px 3px 6px var(--acent-color);
 
   --acent-color: rgba(16, 14, 14, 0.8);
   --color-bg: #fff;
