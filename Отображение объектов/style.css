@@ -7,7 +7,7 @@
   --fw-highlight: var(--text-weight-m);
   --fw-italic: var(--text-weight-l);
   --fw-link: var(--text-weight-l);
-  --fw-link-things: var(--text-weight-l);
+  --fw-link-things: var(--text-weight-m);
   --fw-page: var(--text-weight-s);
   --fw-tags--date--deadline: var(--text-weight-l);
   --fw-title-bold: var(--text-weight-xl);
