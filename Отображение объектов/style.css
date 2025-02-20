@@ -48,7 +48,7 @@
   font-family: 'Avenir Next';
   font-size: var(--fz-page);
   font-weight: var(--fw-page);
-  line-height: 1.1;
+  line-height: 1.2;
   background-color: var(--color-bg);
   color: var(--color-text);
 }
