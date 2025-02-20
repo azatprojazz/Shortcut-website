@@ -299,11 +299,11 @@
 .date,
 .deadline {
   display: flex;
-  padding: 1px 2.5px;
+  padding: 1.5px 2.5px;
   align-self: center;
   font-size: var(--fz-tags--date--deadline);
   font-weight: var(--fw-tags--date--deadline);
-  border-radius: 6px;
+  border-radius: 5px;
 }
 
 .tags {
