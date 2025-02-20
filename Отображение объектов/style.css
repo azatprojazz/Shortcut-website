@@ -328,8 +328,8 @@
 .checkbox {
   position: relative;
   display: inline-block;
-  width: 17px;
-  height: 17px;
+  width: 19px;
+  height: 19px;
   border: 2px solid var(--color-checkbox);
   border-radius: 5px;
   cursor: pointer;
