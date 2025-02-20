@@ -1,3 +1,44 @@
+:root {
+  --fw-all-rules: var(--text-weight-m);
+  --fw-blockquote--quote: var(--text-weight-xl);
+  --fw-bold: var(--text-weight-xl);
+  --fw-cancel: var(--text-weight-m);
+  --fw-complete-all: var(--text-weight-xl);
+  --fw-highlight: var(--text-weight-m);
+  --fw-italic: var(--text-weight-l);
+  --fw-link: var(--text-weight-l);
+  --fw-link-things: var(--text-weight-l);
+  --fw-page: var(--text-weight-s);
+  --fw-tags--date--deadline: var(--text-weight-l);
+  --fw-title-bold: var(--text-weight-xl);
+  --fz-all-rules: var(--text-m);
+  --fz-blockquote--quote: var(--text-xs);
+  --fz-complete-all: var(--text-xxl);
+  --fz-link: var(--text-m);
+  --fz-link-things: var(--text-xl);
+  --fz-list-item-number: var(--text-xs);
+  --fz-list-item-text: var(--text-m);
+  --fz-page: var(--text-l);
+  --fz-tags--date--deadline: var(--text-xs);
+  --fz-title: var(--text-zero);
+  --fz-title-bold: var(--text-m);
+  /* Font weight */
+  --text-l: 1.2rem;
+  --text-m: 1.1rem;
+  --text-s: 1rem;
+  --text-weight-l: 600;
+  --text-weight-m: 500;
+  --text-weight-s: 400;
+  /* Font size */
+  --text-weight-xl: bold;
+  --text-xl: 1.4rem;
+  --text-xs: 0.9rem;
+  --text-xxl: 1.5rem;
+  --text-xxs: 0.8rem;
+  --text-xxxs: 0.7rem;
+  --text-zero: 0;
+}
+
 * {
   scrollbar-width: thin;
 }
@@ -7,6 +48,7 @@
   font-family: 'Avenir Next';
   font-size: var(--fz-page);
   font-weight: var(--fw-page);
+  line-height: 1.1;
   background-color: var(--color-bg);
   color: var(--color-text);
 }
@@ -57,7 +99,6 @@
   margin: 0;
   padding: 0;
   font-size: var(--fz-title);
-  line-height: 1.2;
 }
 
 .link:hover {
@@ -80,7 +121,7 @@
 
 .link__url {
   display: block;
-  overflow-x: auto;
+  overflow: auto hidden;
   grid-area: auto / 2;
   white-space: nowrap;
 }
@@ -193,7 +234,7 @@
 }
 
 .blockquote {
-  overflow-x: auto;
+  overflow: auto hidden;
   margin: 0;
   padding: 8px 10px;
   border-radius: 4px;
@@ -243,13 +284,13 @@
 
 .footer {
   display: grid;
-  padding: 5px 6px;
+  padding: 4px 5.5px;
   grid-template-columns: min-content max-content max-content;
 }
 
 .section,
 .footer {
-  overflow-x: auto;
+  overflow: auto hidden;
   gap: 6px;
   white-space: nowrap;
 }
@@ -258,11 +299,11 @@
 .date,
 .deadline {
   display: flex;
-  padding: 0 4px 1px;
+  padding: 1px 4px;
   align-self: center;
   font-size: var(--fz-tags--date--deadline);
   font-weight: var(--fw-tags--date--deadline);
-  border-radius: 8px;
+  border-radius: 6px;
 }
 
 .tags {
@@ -286,10 +327,10 @@
 .checkbox {
   position: relative;
   display: inline-block;
-  width: 23px;
-  height: 23px;
+  width: 15px;
+  height: 15px;
   border: 2px solid var(--color-checkbox);
-  border-radius: 7px;
+  border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.2s, border-color 0.2s;
 }
@@ -325,12 +366,12 @@
 .checkbox[data-state='Выполнено']::after {
   content: '';
   position: absolute;
-  top: 8%;
-  left: 27%;
-  width: 7px;
-  height: 12px;
+  top: 2%;
+  left: 26%;
+  width: 4px;
+  height: 9px;
   border: solid var(--color-checkbox-done_checked);
-  border-width: 0 4px 4px 0;
+  border-width: 0 3px 3px 0;
   transform: rotate(45deg) scale(0);
   animation: drawCheck 0.2s forwards 0.1s;
   opacity: 0;
@@ -380,16 +421,16 @@
 
 /* Первая линия крестика */
 .checkbox[data-state='Отменено']::before {
-  width: 18px;
-  height: 4px;
+  width: 14px;
+  height: 3px;
   transform: translate(-50%, -50%) rotate(45deg) scaleX(0);
   animation: drawCross1 0.2s forwards 0.1s;
 }
 
 /* Вторая линия крестика */
 .checkbox[data-state='Отменено']::after {
-  width: 18px;
-  height: 4px;
+  width: 14px;
+  height: 3px;
   transform: translate(-50%, -50%) rotate(-45deg) scaleX(0);
   animation: drawCross2 0.2s forwards 0.15s;
 }
