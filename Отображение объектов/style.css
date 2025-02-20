@@ -367,13 +367,13 @@
 .checkbox[data-state='Выполнено']::after {
   content: '';
   position: absolute;
-  top: 2%;
+  top: 6%;
   left: 26%;
-  width: 4px;
-  height: 9px;
+  width: 6px;
+  height: 11px;
   border: solid var(--color-checkbox-done_checked);
-  border-width: 0 3px 3px 0;
-  transform: rotate(45deg) scale(0);
+  border-width: 0 4px 4px 0;
+  transform: rotate(46deg) scale(0);
   animation: drawCheck 0.2s forwards 0.1s;
   opacity: 0;
 }
@@ -422,16 +422,16 @@
 
 /* Первая линия крестика */
 .checkbox[data-state='Отменено']::before {
-  width: 14px;
-  height: 3px;
+  width: 17px;
+  height: 4px;
   transform: translate(-50%, -50%) rotate(45deg) scaleX(0);
   animation: drawCross1 0.2s forwards 0.1s;
 }
 
 /* Вторая линия крестика */
 .checkbox[data-state='Отменено']::after {
-  width: 14px;
-  height: 3px;
+  width: 17px;
+  height: 4px;
   transform: translate(-50%, -50%) rotate(-45deg) scaleX(0);
   animation: drawCross2 0.2s forwards 0.15s;
 }
