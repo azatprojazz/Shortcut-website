@@ -1,6 +1,4 @@
-@import url('https://azatprojazz.github.io/Shortcut-website/Отображение%20объектов/font_style.css');
-
-   .page__theme-dark {
+.page__theme-dark {
     /* Colors */
     --color-black: black;
     --color-black-2: rgb(36, 36, 36);
