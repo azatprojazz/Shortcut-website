@@ -51,9 +51,7 @@ function sendThingsRequest(taskId, params) {
     iframe.style.display = 'none';
     iframe.src = url;
     document.body.appendChild(iframe);
-    setTimeout(() => {
-      document.body.removeChild(iframe);
-    }, 500);
+    document.body.removeChild(iframe);
   }
 }
 
@@ -234,9 +232,7 @@ function sendMassCompleteRequest(taskIds) {
     iframe.style.display = 'none';
     iframe.src = url;
     document.body.appendChild(iframe);
-    setTimeout(() => {
-      document.body.removeChild(iframe);
-    }, 500);
+    document.body.removeChild(iframe);
   }
 }
 
