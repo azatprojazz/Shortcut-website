@@ -9,7 +9,7 @@
   --fw-link: var(--text-weight-l);
   --fw-link-things: var(--text-weight-m);
   --fw-page: var(--text-weight-s);
-  --fw-tags--date--deadline: var(--text-weight-l);
+  --fw-tags--date--deadline: var(--text-weight-xl);
   --fw-title-bold: var(--text-weight-xl);
   --fz-all-rules: var(--text-m);
   --fz-blockquote--quote: var(--text-xs);
@@ -19,7 +19,7 @@
   --fz-list-item-number: var(--text-xs);
   --fz-list-item-text: var(--text-m);
   --fz-page: var(--text-l);
-  --fz-tags--date--deadline: var(--text-s);
+  --fz-tags--date--deadline: var(--text-xs);
   --fz-title: var(--text-zero);
   --fz-title-bold: var(--text-m);
   /* Font weight */
