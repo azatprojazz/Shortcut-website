@@ -299,7 +299,7 @@
 .date,
 .deadline {
   display: flex;
-  padding: 3px 4px;
+  padding: 4px 3px;
   align-self: center;
   font-size: var(--fz-tags--date--deadline);
   font-weight: var(--fw-tags--date--deadline);
@@ -309,7 +309,6 @@
 .tags {
   background-color: var(--color-bg-tags);
   color: var(--color-text-tags);
-  padding: 5px 4px;
 }
 
 .date {
