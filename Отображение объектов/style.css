@@ -19,7 +19,7 @@
   --fz-list-item-number: var(--text-xs);
   --fz-list-item-text: var(--text-m);
   --fz-page: var(--text-l);
-  --fz-tags--date--deadline: var(--text-xs);
+  --fz-tags--date--deadline: var(--text-s);
   --fz-title: var(--text-zero);
   --fz-title-bold: var(--text-m);
   /* Font weight */
@@ -303,7 +303,7 @@
   align-self: center;
   font-size: var(--fz-tags--date--deadline);
   font-weight: var(--fw-tags--date--deadline);
-  border-radius: 4px;
+  border-radius: 5px;
 }
 
 .tags {
@@ -331,7 +331,7 @@
   width: 20px;
   height: 20px;
   border: 2px solid var(--color-checkbox);
-  border-radius: 5px;
+  border-radius: 6px;
   cursor: pointer;
   transition: background-color 0.2s, border-color 0.2s;
 }
