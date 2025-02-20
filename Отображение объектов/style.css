@@ -299,17 +299,17 @@
 .date,
 .deadline {
   display: flex;
-  padding: 1.5px 2.5px;
+  padding: 2px 2.5px;
   align-self: center;
   font-size: var(--fz-tags--date--deadline);
   font-weight: var(--fw-tags--date--deadline);
-  border-radius: 5px;
+  border-radius: 4px;
 }
 
 .tags {
   background-color: var(--color-bg-tags);
   color: var(--color-text-tags);
-  padding: 3px 2.5px;
+  padding: 3.5px 2.5px;
 }
 
 .date {
@@ -328,8 +328,8 @@
 .checkbox {
   position: relative;
   display: inline-block;
-  width: 19px;
-  height: 19px;
+  width: 20px;
+  height: 20px;
   border: 2px solid var(--color-checkbox);
   border-radius: 5px;
   cursor: pointer;
