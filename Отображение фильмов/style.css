@@ -137,10 +137,24 @@ p {
   opacity: 0.6;
 }
 
+.recomend {
+  display: block;
+  overflow: auto hidden;
+  margin-top: 7px;
+  padding: 0;
+  font-size: 1.1rem;
+  font-style: italic;
+  white-space: nowrap;
+  opacity: 0.6;
+
+  scrollbar-width: thin;
+}
+
 .priority
 + .recomend:last-child {
   display: block;
   overflow: auto hidden;
+  margin-top: 0;
   padding: 0;
   font-size: 1.1rem;
   font-style: italic;
