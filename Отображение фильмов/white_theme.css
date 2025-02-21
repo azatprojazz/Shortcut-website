@@ -1,7 +1,7 @@
 .page__theme-white {
-  --box-shadow: 0px 3px 6px var(--acent-color);
+  --box-shadow: 0 2px 6px var(--acent-color);
 
-  --acent-color: rgba(16, 14, 14, 0.8);
+  --acent-color: rgb(16, 14, 14);
   --color-bg: #fff;
   --color-container: #f9f9f9;
   --color-rating: orangered;
