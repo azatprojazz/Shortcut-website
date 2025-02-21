@@ -1,5 +1,6 @@
 html {
   scroll-behavior: smooth;
+  scrollbar-width: thin;
 }
 
 body {
@@ -9,6 +10,7 @@ body {
 }
 
 .container {
+  position: relative;
   overflow: hidden;
   box-sizing: border-box;
   width: 94vw;
@@ -36,7 +38,6 @@ body {
     padding-top: 28px;
   }
 }
-
 
 img {
   box-sizing: border-box;
@@ -84,7 +85,7 @@ img {
 }
 
 h1 {
-  margin: 0.3em 0 0.3em;
+  margin: 0.3em 0.4em;
   padding: 0;
   font-size: 1.7rem;
 }
@@ -115,6 +116,7 @@ p {
   font-size: 1.2rem;
   font-weight: 500;
   line-height: 1.3;
+  hyphens: auto;
 }
 
 .rating {
@@ -122,23 +124,25 @@ p {
   font-weight: 600;
   font-style: italic;
   color: var(--color-rating);
-  opacity: 0.8;
+  opacity: 0.9;
 }
 
 .priority {
-  margin-top: -5px;
+  margin: -5px auto -4px;
   font-size: 1.1rem;
   font-style: italic;
+  opacity: 0.6;
 }
 
 .priority
 + .recomend:last-child {
   display: block;
   overflow: auto hidden;
-  padding: 4px 0 0;
+  padding: 0;
   font-size: 1.1rem;
   font-style: italic;
   white-space: nowrap;
+  opacity: 0.6;
 
   scrollbar-width: thin;
 }
@@ -146,11 +150,12 @@ p {
 .recomend::before {
   content: '';
   position: absolute;
-  display: block;
-  width: 94vw;
+  right: 0;
+  left: 0;
+  width: 100%;
   max-width: 600px;
-  height: 2px;
-  margin-top: -7px;
-  justify-self: anchor-center;
+  margin: 0 auto;
+  margin-top: -3px;
+  border-top: 1px solid var(--acent-color);
   background: var(--acent-color);
 }
