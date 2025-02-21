@@ -43,6 +43,10 @@
   scrollbar-width: thin;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 .page {
   box-sizing: border-box;
   font-family: 'Avenir Next';

@@ -1,5 +1,5 @@
 .page__theme-dark {
-  --box-shadow: 0px 3px 6px var(--acent-color);
+  --box-shadow: 0px 1px 5px var(--acent-color);
 
   --acent-color: rgb(255, 183, 0);
   --color-bg: #121212;
