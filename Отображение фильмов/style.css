@@ -85,8 +85,10 @@ img {
 }
 
 h1 {
-  margin: 0.3em 0.4em;
+  max-width: 460px;
+  margin: 0.4em 0.4em 0.2em;
   padding: 0;
+  justify-self: center;
   font-size: 1.7rem;
 }
 
@@ -106,6 +108,7 @@ h1 {
 
 .genre {
   font-size: 1rem;
+  hyphens: manual;
   opacity: 0.4;
 }
 
@@ -158,4 +161,5 @@ p {
   margin-top: -3px;
   border-top: 1px solid var(--acent-color);
   background: var(--acent-color);
+  opacity: 0.3;
 }
