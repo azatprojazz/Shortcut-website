@@ -40,6 +40,8 @@
 }
 
 * {
+  outline: none;
+
   scrollbar-width: thin;
 }
 
@@ -128,10 +130,11 @@ html {
   display: block;
   overflow: auto hidden;
   white-space: nowrap;
+
+  text-wrap-mode: nowrap;
 }
 
 .list-item {
-  display: flex;
   align-items: baseline;
   color: var(--color-check-list);
 }
@@ -168,47 +171,31 @@ html {
 }
 
 .list-item_check {
-  width: fit-content;
   margin: 6px 0;
   padding: 1px 7px;
-  align-items: baseline;
   border: 2px solid var(--color-list-item_check);
   border-radius: 8px;
   color: var(--color-text);
 }
 
 .list-item_done {
-  width: fit-content;
   margin: 6px 0;
   padding: 1px 7px;
-  align-items: baseline;
   border: 2px solid var(--color-list-item_done);
   border-radius: 8px;
   background-color: var(--color-list-item-bg_done);
   color: var(--color-text-list-item);
 }
 
-.list-item_done::before {
-  content: '☑️';
-  margin-right: 5px;
-}
-
 .list-item_cancel {
-  width: fit-content;
   margin: 6px 0;
   padding: 1px 7px;
-  align-items: baseline;
   border: 2px solid var(--color-accent);
   border-radius: 8px;
   background-color: var(--color-list-item_cancel);
   color: var(--color-text-list-item);
 
   text-decoration-line: line-through;
-}
-
-.list-item_cancel::before {
-  content: '❌';
-  margin-right: 5px;
 }
 
 .citation {
