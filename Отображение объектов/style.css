@@ -59,6 +59,7 @@ html {
 
 .container {
   overflow: hidden;
+  overflow-wrap: anywhere;
   max-width: 710px;
   margin: 10px auto;
   border: 1px solid var(--color-accent);
@@ -72,18 +73,18 @@ html {
 }
 
 .header {
-  /* word-break: break-all; */
-  overflow-wrap: break-word;
+  overflow-wrap: anywhere;
   padding: 4px 6px;
   border-bottom: 1px solid var(--color-accent);
+  word-wrap: anywhere;
   hyphens: auto;
 }
 
 .main {
-  /* word-break: break-all; */
-  overflow-wrap: break-word;
+  overflow-wrap: anywhere;
   padding: 4px 6px;
   border-bottom: 1px solid var(--color-accent);
+  word-wrap: anywhere;
   hyphens: auto;
 }
 
@@ -126,18 +127,18 @@ html {
 .link__url {
   display: block;
   overflow: auto hidden;
-  grid-area: auto / 2;
   white-space: nowrap;
 }
 
 .list-item {
+  display: flex;
   align-items: baseline;
   color: var(--color-check-list);
 }
 
 .list-item__ol {
   display: grid;
-  grid-template: auto / min-content auto;
+  grid-template: auto / max-content auto;
   gap: 5px;
   color: var(--color-text);
 }
@@ -155,7 +156,7 @@ html {
 
 .list-item__ul {
   display: grid;
-  grid-template: auto / min-content auto;
+  grid-template: auto / max-content auto;
   gap: 10px;
   color: var(--color-text);
 }
@@ -311,9 +312,9 @@ html {
 }
 
 .tags {
+  padding: 3.5px 2px;
   background-color: var(--color-bg-tags);
   color: var(--color-text-tags);
-  padding: 3.5px 2px;
 }
 
 .date {
@@ -470,6 +471,7 @@ html {
   overflow: hidden; /* Скрываем все, что выходит за пределы кнопки */
   width: 100%;
   max-width: 710px;
+  margin: auto;
   padding: 10px;
   justify-content: center;
   font-size: var(--fz-complete-all);
