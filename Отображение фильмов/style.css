@@ -21,7 +21,7 @@ body {
   border-radius: 20px;
   background-color: var(--color-container);
   box-shadow: var(--box-shadow);
-  transition: padding-top 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: padding-top 1s cubic-bezier(0.4, 0, 0.2, 1);
   text-align: center;
   word-wrap: break-word;
 }
@@ -33,7 +33,7 @@ body {
   }
 }
 
-@media (min-width: 400px) {
+@media (min-width: 390px) {
   .container {
     padding-top: 28px;
   }
@@ -45,6 +45,11 @@ img {
   font-size: 0;
   border-radius: 19px;
   box-shadow: var(--box-shadow);
+  transition: transform 1s ease-in-out;
+}
+
+img:hover {
+  transform: scale(1.04);
 }
 
 .kinopoisk-link {
