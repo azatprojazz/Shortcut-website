@@ -61,13 +61,11 @@ html {
 
 .container {
   overflow: hidden;
-  overflow-wrap: anywhere;
   max-width: 710px;
   margin: 10px auto;
   border: 1px solid var(--color-accent);
   border-radius: 8px;
   box-shadow: var(--box-shadow);
-  word-wrap: anywhere;
 }
 
 .margins {
@@ -83,10 +81,8 @@ html {
 }
 
 .main {
-  overflow-wrap: anywhere;
   padding: 4px 6px;
   border-bottom: 1px solid var(--color-accent);
-  word-wrap: anywhere;
   hyphens: auto;
 }
 

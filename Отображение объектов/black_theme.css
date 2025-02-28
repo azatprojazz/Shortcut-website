@@ -54,9 +54,9 @@
     --color-checkbox: var(--color-orange-2);
     --color-checkbox_hover: var(--color-tomato);
     --color-checkbox_cancel: var(--color-tomato);
-    --color-checkbox-cross_cancel: var(--color-white);
+    --color-checkbox-cross_cancel: var(--color-black);
     --color-checkbox_checked: var(--color-blue);
-    --color-checkbox-done_checked: var(--color-white);
+    --color-checkbox-done_checked: var(--color-black);
     
     /* Parametrs */
     --emoji-check-box: '🔳';
