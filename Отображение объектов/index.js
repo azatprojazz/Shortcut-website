@@ -37,22 +37,13 @@ function sendThingsRequest(taskId, params) {
     taskId
   )}`;
 
-  // Для touch-устройств (iOS, iPadOS)
-  if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
-    const a = document.createElement('a');
-    a.href = url;
-    a.style.display = 'none';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-  } else {
-    // Для десктопа используем iframe
-    const iframe = document.createElement('iframe');
-    iframe.style.display = 'none';
-    iframe.src = url;
-    document.body.appendChild(iframe);
-    document.body.removeChild(iframe);
-  }
+  // Для всех устройств используем элемент <a> для открытия URL
+  const a = document.createElement('a');
+  a.href = url;
+  a.style.display = 'none';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
 }
 
 // ==========================================================================

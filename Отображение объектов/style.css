@@ -355,10 +355,10 @@ html {
 .checkbox[data-state='Выполнено']::after {
   content: '';
   position: absolute;
-  top: 6%;
-  left: 26%;
-  width: 6px;
-  height: 11px;
+  top: 7%;
+  left: 29%;
+  width: 5px;
+  height: 10px;
   border: solid var(--color-checkbox-done_checked);
   border-width: 0 4px 4px 0;
   transform: rotate(46deg) scale(0);
